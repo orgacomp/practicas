@@ -82,7 +82,9 @@ los números estarán representados en hexadecimal o en binario.
    64bits para ver la diferencia.
 
    > Hint:
+   >
    > $ gcc -Wall -m32 programa.c -o programa_32.c
+   >
    > $ gcc -Wall -m64 programa.c -o programa_64.c
 
 1. Escribir un programa en C que muestre el endianness de la plataforma en la
