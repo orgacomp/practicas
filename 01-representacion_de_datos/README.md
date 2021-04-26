@@ -1,10 +1,10 @@
 01 - Representación de datos
 ============================
 
-El objetivo de esta practica es ganar agilidad en la conversión de números *a
-ojo* y saber como utilizar código C para no perder la cabeza. La conversión *a
-ojo* suele ser muy útil en el momento de leer código asembler ya que en general
-los números estarán representados en hexadecimal o en binario. 
+El objetivo de esta práctica es ganar agilidad en la conversión y trabajo con
+números *a ojo* y saber como utilizar código C para no perder la cabeza. La
+conversión *a ojo* suele ser muy útil en el momento de leer código asembler ya
+que en general los números estarán representados en hexadecimal o en binario.
 
 1. Convertir los siguientes números en representación decimal a binario (8bits)
     1. 18265
