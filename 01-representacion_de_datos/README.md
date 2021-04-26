@@ -96,6 +96,10 @@ los números estarán representados en hexadecimal o en binario.
    > o utilizar el dockerfile incluido en esta practica.
    >
    > $ gcc print_endianness.c --static -o print_endianness_x86_64
+   >
    > $ ./print_endianness_x86_64
+   >
    > $ sparc64-linux-gnu-gcc print_endianness.c --static -o print_endianness_sparc
+   >
    > $ qemu-sparc64-static print_endianness_sparc
+   >
