@@ -76,3 +76,26 @@ los números estarán representados en hexadecimal o en binario.
 1. Escribir un programa en C que identifique el formato del número ingresado e
    imprima la representación de ese número en decimal, hexadecimal y binario.
 
+1. Escribir un programa en C que imprima el tamaño de los siguientes tipos:
+   *int*, *unsigned int*, *unsigned long int*, *char*, *char \**, *float* y
+   *double*. Compilar el programa para una arquitectura de 32bits y una de
+   64bits para ver la diferencia.
+
+   > Hint:
+   > $ gcc -Wall -m32 programa.c -o programa_32.c
+   > $ gcc -Wall -m64 programa.c -o programa_64.c
+
+1. Escribir un programa en C que muestre el endianness de la plataforma en la
+   que se ejecuta el programa. Ejecutar este programa en disintas
+
+   > Hint: read the book
+
+1. Utilizar la herramienta qemu para ejecutar el programa en distintas arquitecturas.
+
+   > Hint: pueden instalar las herramientas qemu-user-static gcc gcc-multilib-sparc64-linux-gnu
+   > o utilizar el dockerfile incluido en esta practica.
+   >
+   > $ gcc print_endianness.c --static -o print_endianness_x86_64
+   > $ ./print_endianness_x86_64
+   > $ sparc64-linux-gnu-gcc print_endianness.c --static -o print_endianness_sparc
+   > $ qemu-sparc64-static print_endianness_sparc
