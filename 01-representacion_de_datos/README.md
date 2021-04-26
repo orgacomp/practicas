@@ -105,3 +105,29 @@ los números estarán representados en hexadecimal o en binario.
    >
    > $ qemu-sparc64-static print_endianness_sparc
    >
+
+1. Resolver los siguientes problemas de álgebra booleana.
+    1. ~A para:
+        1. A = 0xac
+        1. A = 0x11
+        1. A = 0x23
+        1. A = 0xde
+    1. A | B  para:
+        1. A = 0xac ; B = 0x32
+        1. A = 0x11 ; B = 0xaa
+        1. A = 0x23 ; B = 0xff
+        1. A = 0xde ; B = 0x13
+    1. A & B  para:
+        1. A = 0xac ; B = 0x32
+        1. A = 0x11 ; B = 0xaa
+        1. A = 0x23 ; B = 0xff
+        1. A = 0xde ; B = 0x13
+    1. A ^ B  para:
+        1. A = 0xac ; B = 0x32
+        1. A = 0x11 ; B = 0xaa
+        1. A = 0x23 ; B = 0xff
+        1. A = 0xde ; B = 0x13
+
+1. Escribir un programa en C que utilizando *printf* y *scanf* resuelva el
+   ejercicio anterior. Los número deben ser ingresados por separado formato
+   *0x1234*.
