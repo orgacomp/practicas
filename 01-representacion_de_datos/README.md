@@ -145,6 +145,6 @@ que en general los números estarán representados en hexadecimal o en binario.
    dentro de una variable de 32bits. La variable modificada es devuelta por
    return de la función.
 
-   ```
+   ```c
    uint32_t set_bit_on_var(uint32_t var, size_t index);
    ```
