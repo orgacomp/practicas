@@ -44,7 +44,7 @@ los números estarán representados en hexadecimal o en binario.
     1. 0xe8b2
     1. 0x6e49
     1. 0x235e
-    1. 0cubo143
+    1. 0x3343
     1. 0x39d1
     1. 0xf093
 
