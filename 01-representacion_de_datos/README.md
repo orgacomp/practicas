@@ -131,3 +131,20 @@ los números estarán representados en hexadecimal o en binario.
 1. Escribir un programa en C que utilizando *printf* y *scanf* resuelva el
    ejercicio anterior. Los número deben ser ingresados por separado formato
    *0x1234*.
+
+1. Resolver los siguientes problemas de manejo de bits.
+    1. (0xffe2 >> 3)
+    1. (0xace2 << 5)
+    1. (0x12e2 >> 2)
+    1. (0xf1eb >> 1)
+    1. (0xab12 << 6)
+    1. (0x62ea >> 2)
+
+1. Escribir una función en C que aproveche las operaciones de bits para setear
+   (poner en 1) o clerear (poner en 0) un bit especifico (index: 0, 1, 2, ...)
+   dentro de una variable de 32bits. La variable modificada es devuelta por
+   return de la función.
+
+   ```
+   uint32_t set_bit_on_var(uint32_t var, size_t index);
+   ```
