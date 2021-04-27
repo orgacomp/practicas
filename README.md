@@ -67,6 +67,7 @@ practicas (main)$ git checkout -b new_branch
 
 add
 ^^^
+
 Si tenemos archivos nuevos que todavía no son parte del repositorio podemos
 agregarlos con *add*.
 
