@@ -24,7 +24,7 @@ $ git clone https://github.com/orgacomp/practicas practicas
 ```
 
 El comando *clone* nos permite bajar a un directorio local un repositorio
-remoto. En este caso el repositorio es el de las practicas de la materia.
+remoto. En este caso el repositorio es el de las prácticas de la materia.
 
 status
 ^^^^^^
@@ -114,7 +114,7 @@ aplicarlos en el branch actual.
 practicas (main)$ git pull
 ```
 
-Si solo queremos traer los cambios sin aplicarlos podemos usar el comando
+Si sólo queremos traer los cambios sin aplicarlos podemos usar el comando
 *fetch*.
 
 ```bash
