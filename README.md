@@ -28,6 +28,7 @@ remoto. En este caso el repositorio es el de las practicas de la materia.
 
 status
 ^^^^^^
+
 ```bash
 practicas (main)$ git status
 On branch main
