@@ -1,23 +1,19 @@
-95.57 Prácticas
-===============
+# 95.57 Prácticas
 
 Guías prácticas para la materia Organización del Computador de FIUBA (95.57),
 curso Moreno/de Andres.
 
 [01 - Representación de datos](01-representacion_de_datos/README.md)
 
-Herramientas para las prácticas
-===============================
+## Herramientas para las prácticas
 
-Git
----
+### Git
 
 [Git](https://git-scm.com/) es una herramienta de versionado y manejo de
 cambios en código fuente. Esta herramienta nos va a permitir compartir cambios
 en código de una forma fácil y determinista.
 
-clone
-^^^^^
+#### clone
 
 ```bash
 $ git clone https://github.com/orgacomp/practicas practicas
@@ -26,8 +22,7 @@ $ git clone https://github.com/orgacomp/practicas practicas
 El comando *clone* nos permite bajar a un directorio local un repositorio
 remoto. En este caso el repositorio es el de las prácticas de la materia.
 
-status
-^^^^^^
+#### status
 
 ```bash
 practicas (main)$ git status
@@ -41,8 +36,7 @@ Status nos permite ver el estado actual de la copia de trabajo. En este caso no
 hay ningún cambio. En el caso de haber nos indicará si son cambios a archivos
 que son parte del repositorio o si son archivos nuevos.
 
-branch
-^^^^^^
+#### branch
 
 Los branches son las líneas (o ramas) de desarrollo dentro de un repositorio.
 Con el comando *branch* podemos ver las líneas locales.
@@ -54,8 +48,7 @@ practicas (main)$ git branch -a
 
 La opción *-a* nos permite además ver los branches del repositorio remoto.
 
-checkout
-^^^^^^^^
+#### checkout
 
 Con el comando *checkout* podemos movernos entre _branches_ existentes o crear
 nuevos.
@@ -65,8 +58,7 @@ practicas (main)$ git checkout branch_name
 practicas (main)$ git checkout -b new_branch
 ```
 
-add
-^^^
+#### add
 
 Si tenemos archivos nuevos que todavía no son parte del repositorio podemos
 agregarlos con *add*.
@@ -85,8 +77,7 @@ practicas (main)$ git add -p
 
 Este comando nos permite agregar interactivamente los cambios.
 
-commit
-^^^^^^
+#### commit
 
 Una vez agregados los cambios con *add* utilizamos el comando *commit* para
 decirle a git que los guarde en el repositorio.
@@ -96,8 +87,7 @@ practicas (main)$ git commit -m "Mensaje del commit"
 practicas (main)$ git commit -v
 ```
 
-push
-^^^^
+#### push
 
 Con los cambios _commiteados_ podemos enviarlos al repositorio remoto con el
 comando *push*.
@@ -107,8 +97,7 @@ practicas (main)$ git push
 practicas (main)$ git push remote_name branch_name
 ```
 
-pull, fetch
-^^^^^^^^^^^
+#### pull, fetch
 
 Con el comando *pull* podemos traernos los cambios en el repositorio remoto y
 aplicarlos en el _branch_ actual.
@@ -124,14 +113,12 @@ Si sólo queremos traer los cambios sin aplicarlos podemos usar el comando
 practicas (main)$ git fetch
 ```
 
-Docker
-------
+### Docker
 
 [Docker](https://www.docker.com/) nos va a permitir trabajar en un entorno
 seguro y ya preparado con las herramientas necesarias.
 
-build
-^^^^^
+#### build
 
 A partir de los Dockerfiles distribuidos con las prácticas podemos generar una
 imagen para usar.
@@ -143,8 +130,7 @@ $ docker build . -t orga
 Parados en el directorio donde esta el Dockerfile le pedimos a docker que
 _buildee_ esa imagen y con *-t* le damos el nombre que queremos que use.
 
-images
-^^^^^^
+#### images
 
 Con *images* podemos ver la lista de imágenes que tenemos en este momento en el
 sistema.
@@ -153,8 +139,7 @@ sistema.
 $ docker images
 ```
 
-run
-^^^
+#### run
 
 Para correr la imagen y generar un container utilizamos el comando *run*.
 
@@ -173,8 +158,7 @@ $ docker run -v `pwd`:/home -it --rm orga
 Esto le diría a docker que monte el directorio actual donde estamos ejecutando
 docker en el directorio */home* del container.
 
-QEMU
-----
+### QEMU
 
 [QEMU](https://qemu.org/) es un emulador y virtualizador
 [libre](https://en.wikipedia.org/wiki/Free_software). Esta herramienta nos va a
