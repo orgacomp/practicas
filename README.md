@@ -43,8 +43,9 @@ que son parte del repositorio o si son archivos nuevos.
 
 branch
 ^^^^^^
-Los branches son las lineas de desarrollo dentro de un repositorio. Con el
-comando *branch* podemos ver las lineas locales.
+
+Los branches son las líneas (o ramas) de desarrollo dentro de un repositorio.
+Con el comando *branch* podemos ver las líneas locales.
 
 ```bash
 practicas (main)$ git branch
