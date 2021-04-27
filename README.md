@@ -18,6 +18,7 @@ en código de una forma fácil y determinista.
 
 clone
 ^^^^^
+
 ```bash
 $ git clone https://github.com/orgacomp/practicas practicas
 ```
