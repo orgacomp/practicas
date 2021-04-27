@@ -38,7 +38,7 @@ nothing to commit, working tree clean
 ```
 
 Status nos permite ver el estado actual de la copia de trabajo. En este caso no
-hay ningún cambio. En el caso de haber nos indicara si son cambios a archivos
+hay ningún cambio. En el caso de haber nos indicará si son cambios a archivos
 que son parte del repositorio o si son archivos nuevos.
 
 branch
