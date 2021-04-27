@@ -115,3 +115,49 @@ Si solo queremos traer los cambios sin aplicarlos podemos usar el comando
 ```bash
 practicas (main)$ git fetch
 ```
+
+Docker
+------
+
+[Docker](https://www.docker.com/) nos va a permitir trabajar en un entorno
+seguro y ya preparado con las herramientas necesarias.
+
+build
+^^^^^
+A partid de los Dockerfiles distribuidos con las practicas podemos generar una
+imagen para usar.
+
+```bash
+$ docker build . -t orga
+```
+
+Parados en el directorio donde esta el Dockerfile le pedimos a docker que
+buildee esa imagen y con *-t* le damos el nombre que queremos que use.
+
+images
+^^^^^^
+Con *images* podemos ver la lista de imágenes que tenemos en este momento en el
+sistema
+
+```bash
+$ docker images
+```
+
+run
+^^^
+Para correr la imagen y generar un container utilizamos el comando *run*.
+
+```bash
+$ docker run -it --rm orga
+```
+
+Con *-i* le decimos que sea interactivo, *-t* para que use una terminal tty y
+*--rm* para que borre el container al terminar de usarlo. Para que esto sea
+útil falta montar un directorio del host en el container.
+
+```bash
+$ docker run -v `pwd`:/home -it --rm orga
+```
+
+Esto le diría a docker que monte el directorio actual donde estamos ejecutando
+docker en el directorio */home* del container.
