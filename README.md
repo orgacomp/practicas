@@ -76,7 +76,7 @@ practicas (main)$ git add new_file
 ```
 
 El mismo comando se puede usar para agregar cambios de un archivo que ya es
-parte del repositorio, pero es una buena practica agregar los cambios de a poco
+parte del repositorio, pero es una buena práctica agregar los cambios de a poco
 y conscientemente. Para eso se puede usar el comando *add -p*
 
 ```bash
