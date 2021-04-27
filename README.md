@@ -87,6 +87,7 @@ Este comando nos permite agregar interactivamente los cambios.
 
 commit
 ^^^^^^
+
 Una vez agregados los cambios con *add* utilizamos el comando *commit* para
 decirle a git que los guarde en el repositorio.
 
@@ -97,7 +98,8 @@ practicas (main)$ git commit -v
 
 push
 ^^^^
-Con los cambios commiteados podemos enviarlos al repositorio remoto con el
+
+Con los cambios _commiteados_ podemos enviarlos al repositorio remoto con el
 comando *push*.
 
 ```bash
@@ -107,8 +109,9 @@ practicas (main)$ git push remote_name branch_name
 
 pull, fetch
 ^^^^^^^^^^^
+
 Con el comando *pull* podemos traernos los cambios en el repositorio remoto y
-aplicarlos en el branch actual.
+aplicarlos en el _branch_ actual.
 
 ```bash
 practicas (main)$ git pull
@@ -129,7 +132,8 @@ seguro y ya preparado con las herramientas necesarias.
 
 build
 ^^^^^
-A partid de los Dockerfiles distribuidos con las practicas podemos generar una
+
+A partir de los Dockerfiles distribuidos con las prácticas podemos generar una
 imagen para usar.
 
 ```bash
@@ -141,8 +145,9 @@ buildee esa imagen y con *-t* le damos el nombre que queremos que use.
 
 images
 ^^^^^^
+
 Con *images* podemos ver la lista de imágenes que tenemos en este momento en el
-sistema
+sistema.
 
 ```bash
 $ docker images
@@ -150,6 +155,7 @@ $ docker images
 
 run
 ^^^
+
 Para correr la imagen y generar un container utilizamos el comando *run*.
 
 ```bash
