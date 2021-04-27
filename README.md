@@ -141,7 +141,7 @@ $ docker build . -t orga
 ```
 
 Parados en el directorio donde esta el Dockerfile le pedimos a docker que
-buildee esa imagen y con *-t* le damos el nombre que queremos que use.
+_buildee_ esa imagen y con *-t* le damos el nombre que queremos que use.
 
 images
 ^^^^^^
@@ -176,9 +176,10 @@ docker en el directorio */home* del container.
 QEMU
 ----
 
-[QEMU](https://qemu.org/) es un emulador y virtualizador open source. Esta
-herramienta nos va a permitir ejecutar código compilado para diferentes
-arquitecturas después una arquitectura base (x86_64).
+[QEMU](https://qemu.org/) es un emulador y virtualizador
+[libre](https://en.wikipedia.org/wiki/Free_software). Esta herramienta nos va a
+permitir ejecutar código compilado para diferentes arquitecturas sobre una
+arquitectura base (x86_64).
 
 
 Por ejemplo para ejecutar un binario *my_app_sparc* compilado para una
