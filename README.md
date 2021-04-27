@@ -161,3 +161,18 @@ $ docker run -v `pwd`:/home -it --rm orga
 
 Esto le diría a docker que monte el directorio actual donde estamos ejecutando
 docker en el directorio */home* del container.
+
+QEMU
+----
+
+[QEMU](https://qemu.org/) es un emulador y virtualizador open source. Esta
+herramienta nos va a permitir ejecutar código compilado para diferentes
+arquitecturas después una arquitectura base (x86_64).
+
+
+Por ejemplo para ejecutar un binario *my_app_sparc* compilado para una
+arquitectura sparc de 64bits usaríamos:
+
+```bash
+$ qemu-sparc64-static my_app_sparc
+```
