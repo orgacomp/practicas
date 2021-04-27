@@ -56,7 +56,8 @@ La opción *-a* nos permite además ver los branches del repositorio remoto.
 
 checkout
 ^^^^^^^^
-Con el comando *checkout* podemos movernos entre branches existentes o crear
+
+Con el comando *checkout* podemos movernos entre _branches_ existentes o crear
 nuevos.
 
 ```bash
