@@ -88,7 +88,7 @@ que en general los números estarán representados en hexadecimal o en binario.
    > $ gcc -Wall -m64 programa.c -o programa_64.c
 
 1. Escribir un programa en C que muestre el endianness de la plataforma en la
-   que se ejecuta el programa. Ejecutar este programa en distintas
+   que se ejecuta el programa.
 
    > Hint: read the book
 
