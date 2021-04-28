@@ -6,7 +6,7 @@ números *a ojo* y saber como utilizar código C para no perder la cabeza. La
 conversión *a ojo* suele ser muy útil en el momento de leer código asembler ya
 que en general los números estarán representados en hexadecimal o en binario.
 
-1. Convertir los siguientes números en representación decimal a binario (8bits)
+1. Convertir los siguientes números en representación decimal a binario (16bits)
     1. 18265
     1. 7810
     1. 51007
