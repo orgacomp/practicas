@@ -93,8 +93,8 @@ que en general los números estarán representados en hexadecimal o en binario.
 
    > Hint: read the book
 
-1. Utilizar la herramienta [qemu](00-herramientas#qemu) para ejecutar el
-   programa en distintas arquitecturas.
+1. Utilizar la herramienta qemu para ejecutar el programa en distintas
+   arquitecturas.
 
    > Hint: pueden instalar las herramientas qemu-user-static gcc gcc-multilib-sparc64-linux-gnu
    > o utilizar el dockerfile incluido en esta práctica.
