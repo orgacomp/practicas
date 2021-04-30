@@ -148,3 +148,25 @@ que en general los números estarán representados en hexadecimal o en binario.
    ```c
    uint32_t set_bit_on_var(uint32_t var, size_t index);
    ```
+
+1. Dadas las definiciones *int a, b;* y teniendo en cuenta que los enteros
+  signados se representan en complemento a dos. Además, las constantes
+  *INT_MIN* e *INT_MAX* representan los valores mínimo y máximo que puede
+  tener un entero de 32 bits, y la constante *W = 31*. Una las
+  descripciones de la izquierda con las expresiones de la derecha.
+
+  Descripciones:
+      1. ~a (complemento a uno)
+      1. a
+      1. a * 7
+      1. (a < 0) ? 1 : -1
+  Expresiones:
+      1. ~(~a | (b ^ (INT_MIN + INT_MAX)))
+      1. ((a ^ b) & ~b) | (~(a ^ b) & b)
+      1. 1 + (a << 3) + ~a
+      1. (a << 4) + (a << 2) + (a << 1)
+      1. ((a < 0) ? (a + 3) : a) >> 2
+      1. a ^ (INT_MIN + INT_MAX)
+      1. ~((a | (~a + 1)) >> W) & 1
+      1. ~((a >> W) << 1)
+      1. a >> 2
