@@ -1,5 +1,3 @@
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
-
 01 - Representación de datos
 ============================
 
@@ -158,17 +156,17 @@ que en general los números estarán representados en hexadecimal o en binario.
    descripciones de la izquierda con las expresiones de la derecha.
 
    * Descripciones:
-        * $$~a$$ (complemento a uno)
-        * $$a$$
-        * $$a * 7$$
-        * $$(a < 0) ? 1 : -1$$
+        * `~a` (complemento a uno)
+        * `a`
+        * `a * 7`
+        * `(a < 0) ? 1 : -1`
    * Expresiones:
-        * $$~(~a | (b ^ (INT_MIN + INT_MAX)))$$
-        * $$((a ^ b) & ~b) | (~(a ^ b) & b)$$
-        * $$1 + (a << 3) + ~a$$
-        * $$(a << 4) + (a << 2) + (a << 1)$$
-        * $$((a < 0) ? (a + 3) : a) >> 2$$
-        * $$a ^ (INT_MIN + INT_MAX)$$
-        * $$~((a | (~a + 1)) >> W) & 1$$
-        * $$~((a >> W) << 1)$$
-        * $$a >> 2$$
+        * `~(~a | (b ^ (INT_MIN + INT_MAX)))`
+        * `((a ^ b) & ~b) | (~(a ^ b) & b)`
+        * `1 + (a << 3) + ~a`
+        * `(a << 4) + (a << 2) + (a << 1)`
+        * `((a < 0) ? (a + 3) : a) >> 2`
+        * `a ^ (INT_MIN + INT_MAX)`
+        * `~((a | (~a + 1)) >> W) & 1`
+        * `~((a >> W) << 1)`
+        * `a >> 2`
