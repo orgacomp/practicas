@@ -1,3 +1,5 @@
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
 01 - Representación de datos
 ============================
 
@@ -150,23 +152,23 @@ que en general los números estarán representados en hexadecimal o en binario.
    ```
 
 1. Dadas las definiciones *int a, b;* y teniendo en cuenta que los enteros
-  signados se representan en complemento a dos. Además, las constantes
-  *INT_MIN* e *INT_MAX* representan los valores mínimo y máximo que puede
-  tener un entero de 32 bits, y la constante *W = 31*. Una las
-  descripciones de la izquierda con las expresiones de la derecha.
+   signados se representan en complemento a dos. Además, las constantes
+   *INT_MIN* e *INT_MAX* representan los valores mínimo y máximo que puede
+   tener un entero de 32 bits, y la constante *W = 31*. Una las
+   descripciones de la izquierda con las expresiones de la derecha.
 
-  Descripciones:
-      1. ~a (complemento a uno)
-      1. a
-      1. a * 7
-      1. (a < 0) ? 1 : -1
-  Expresiones:
-      1. ~(~a | (b ^ (INT_MIN + INT_MAX)))
-      1. ((a ^ b) & ~b) | (~(a ^ b) & b)
-      1. 1 + (a << 3) + ~a
-      1. (a << 4) + (a << 2) + (a << 1)
-      1. ((a < 0) ? (a + 3) : a) >> 2
-      1. a ^ (INT_MIN + INT_MAX)
-      1. ~((a | (~a + 1)) >> W) & 1
-      1. ~((a >> W) << 1)
-      1. a >> 2
+   * Descripciones:
+        * $$~a$$ (complemento a uno)
+        * $$a$$
+        * $$a * 7$$
+        * $$(a < 0) ? 1 : -1$$
+   * Expresiones:
+        * $$~(~a | (b ^ (INT_MIN + INT_MAX)))$$
+        * $$((a ^ b) & ~b) | (~(a ^ b) & b)$$
+        * $$1 + (a << 3) + ~a$$
+        * $$(a << 4) + (a << 2) + (a << 1)$$
+        * $$((a < 0) ? (a + 3) : a) >> 2$$
+        * $$a ^ (INT_MIN + INT_MAX)$$
+        * $$~((a | (~a + 1)) >> W) & 1$$
+        * $$~((a >> W) << 1)$$
+        * $$a >> 2$$
