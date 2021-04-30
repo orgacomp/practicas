@@ -149,6 +149,48 @@ que en general los números estarán representados en hexadecimal o en binario.
    uint32_t set_bit_on_var(uint32_t var, size_t index);
    ```
 
+1. Escribir en representación entera de 16bit con complemento a dos los
+   siguientes números.
+    1. 14772
+    1. 12110
+    1. -13483
+    1. -8104
+    1. 11518
+    1. -29641
+    1. -3188
+    1. -19378
+    1. 8566
+    1. -4682
+
+1. Convertir la siguiente representación binaria de 16bits a decimal,
+   suponiendo primero que es una representación entera sin signo, una
+   representación entera con signo en complemento a dos, una representación
+   entera con signo en complemento a uno.
+    1. 0b1111000010010011
+    1. 0b0011110100011101
+    1. 0b1010011011010111
+    1. 0b0110101001010111
+    1. 0b1111001101000001
+    1. 0b0100110000011011
+    1. 0b1111001101001000
+    1. 0b0110001100000011
+    1. 0b1011101001101011
+    1. 0b0100111110011011
+
+1. Escribir una función en C que acepte por parámetro un numero entero sin
+   signo e imprima la representación entera con signo y sin signo. Testear la
+   función con los siguientes número.
+    1. 53888
+    1. 47428
+    1. 36650
+    1. 1455
+    1. 29128
+    1. 36040
+    1. 65536
+    1. 52854
+    1. 29626
+    1. 46818
+
 1. Dadas las definiciones *int a, b;* y teniendo en cuenta que los enteros
    signados se representan en complemento a dos. Además, las constantes
    *INT_MIN* e *INT_MAX* representan los valores mínimo y máximo que puede
