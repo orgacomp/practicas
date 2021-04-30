@@ -156,17 +156,17 @@ que en general los números estarán representados en hexadecimal o en binario.
    descripciones de la izquierda con las expresiones de la derecha.
 
    * Descripciones:
-        * `~a` (complemento a uno)
-        * `a`
-        * `a * 7`
-        * `(a < 0) ? 1 : -1`
+        1. `~a` (complemento a uno)
+        1. `a`
+        1. `a * 7`
+        1. `(a < 0) ? 1 : -1`
    * Expresiones:
-        * `~(~a | (b ^ (INT_MIN + INT_MAX)))`
-        * `((a ^ b) & ~b) | (~(a ^ b) & b)`
-        * `1 + (a << 3) + ~a`
-        * `(a << 4) + (a << 2) + (a << 1)`
-        * `((a < 0) ? (a + 3) : a) >> 2`
-        * `a ^ (INT_MIN + INT_MAX)`
-        * `~((a | (~a + 1)) >> W) & 1`
-        * `~((a >> W) << 1)`
-        * `a >> 2`
+        1. `~(~a | (b ^ (INT_MIN + INT_MAX)))`
+        1. `((a ^ b) & ~b) | (~(a ^ b) & b)`
+        1. `1 + (a << 3) + ~a`
+        1. `(a << 4) + (a << 2) + (a << 1)`
+        1. `((a < 0) ? (a + 3) : a) >> 2`
+        1. `a ^ (INT_MIN + INT_MAX)`
+        1. `~((a | (~a + 1)) >> W) & 1`
+        1. `~((a >> W) << 1)`
+        1. `a >> 2`
