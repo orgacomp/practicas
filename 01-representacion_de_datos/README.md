@@ -241,6 +241,39 @@ que en general los números estarán representados en hexadecimal o en binario.
     1. -625813639
     1. 403361717
 
+1. Calcular la suma de las siguientes variables contra si mismas suponiendo que
+   son resueltas en una arquitectura de 32bits que utiliza una aritmética de
+   complemento a dos (uint32_t).  Indicar los casos en los que el resultado no es valido.
+    1. 888678457
+    1. 2851757120
+    1. 1912450232
+    1. 4079538690
+    1. 4154371837
+    1. 1988670315
+    1. 442559150
+    1. 2595390421
+    1. 2860812492
+    1. 515237114
+
+
+1. Calcular la suma de las siguientes variables contra si mismas suponiendo que
+   son resueltas en una arquitectura de 32bits que utiliza una aritmética de
+   complemento a dos (int32_t).  Indicar los casos en los que el resultado no es valido.
+    1. 9837
+    1. 18328
+    1. 30932
+    1. -26481
+    1. -24356
+    1. 2260
+    1. 25312
+    1. -31865
+    1. 4919
+    1. -336
+
+1. Escribir un programa en C que permita ingresar un número y resuelva los dos
+   ejercicios anteriores. En caso de ser positivo calcular la suma tanto para
+   una representación de *uint32_t* como para una representación *int32_t*.
+
 1. Dadas las definiciones *int a, b;* y teniendo en cuenta que los enteros
    signados se representan en complemento a dos. Además, las constantes
    *INT_MIN* e *INT_MAX* representan los valores mínimo y máximo que puede
