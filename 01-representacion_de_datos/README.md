@@ -202,6 +202,45 @@ que en general los números estarán representados en hexadecimal o en binario.
    1. `2147483647 > (int) 2147483648U`
    1. `-1 < 0U`
 
+1. Escribir una función en C que tome como parámetro un numero entero de 16bits
+   con signo (*short int*), copie el valor a una variable de 32bits (*int*) en
+   imprima su valor. Escribir un programa que utilice esta función y la escrita
+   anteriormente que imprime la representación en memoria de la variable para
+   ver como cambia en distintas arquitecturas utilizando como entrada los
+   siguientes números.
+
+   > Hint: utilizar qemu-sparc64-static para ejecutar el programa en
+   > arquitecturas big-endian
+    1. 13528
+    1. -11674
+    1. 27091
+    1. -15913
+    1. 22782
+    1. -8521
+    1. 4874
+    1. -698
+    1. 13992
+    1. 17396
+
+1. Escribir una función en C que tome como parámetro un numero entero de 32bits
+   con signo (*int*), copie el valor a una variable de 32bits (*short int*) en
+   imprima su valor. Escribir un programa que utilice esta función y la escrita
+   anteriormente que imprime la representación en memoria de la variable para
+   ver como cambia en distintas arquitecturas.
+
+   > Hint: utilizar qemu-sparc64-static para ejecutar el programa en
+   > arquitecturas big-endian
+    1. -1580948425
+    1. 1870865340
+    1. -107982815
+    1. -157511958
+    1. 742922907
+    1. -1163069406
+    1. 1813815629
+    1. 223375263
+    1. -625813639
+    1. 403361717
+
 1. Dadas las definiciones *int a, b;* y teniendo en cuenta que los enteros
    signados se representan en complemento a dos. Además, las constantes
    *INT_MIN* e *INT_MAX* representan los valores mínimo y máximo que puede
