@@ -16,7 +16,7 @@ que en general los números estarán representados en hexadecimal o en binario.
     1. 5736
     1. 423
 
-1. Escribir un programa en C que utilizando *printf* y *scanf* resuelva el
+1. Escribir un programa en C que, utilizando *printf* y *scanf*, resuelva el
    ejercicio anterior.
 
    > Hint: El siguiente código describe un programa que toma el número decimal
@@ -78,9 +78,9 @@ que en general los números estarán representados en hexadecimal o en binario.
    imprima la representación de ese número en decimal, hexadecimal y binario.
 
 1. Escribir un programa en C que imprima el tamaño de los siguientes tipos:
-   *int*, *unsigned int*, *unsigned long int*, *char*, *char \**, *float* y
-   *double*. Compilar el programa para una arquitectura de 32bits y una de
-   64bits para ver la diferencia.
+   *int*, *unsigned int*, *unsigned long int*, *char*, *char \**, *float*,
+   *double*, *float \**, *double \**, y *unsigned int \**. Compilar el programa
+   para una arquitectura de 32bits y una de 64bits para ver la diferencia.
 
    > Hint:
    >
