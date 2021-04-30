@@ -2,7 +2,7 @@
 ============================
 
 El objetivo de esta práctica es ganar agilidad en la conversión y trabajo con
-números *a ojo* y saber como utilizar código C para no perder la cabeza. La
+números *a ojo* y saber cómo utilizar código C para no perder la cabeza. La
 conversión *a ojo* suele ser muy útil en el momento de leer código asembler ya
 que en general los números estarán representados en hexadecimal o en binario.
 
@@ -21,6 +21,7 @@ que en general los números estarán representados en hexadecimal o en binario.
 
    > Hint: El siguiente código describe un programa que toma el número decimal
    > ingresado por el usuario y lo imprime en la misma representación.
+
    ```c 
    #include <stdio.h>
    
@@ -69,7 +70,7 @@ que en general los números estarán representados en hexadecimal o en binario.
    ejercicio anterior. El número debe ser ingresado en formato
    *0b0100010011011101*.
 
-   > Hint: a falta de un formato especifico para leer e imprimir números
+   > Hint: a falta de un formato específico para leer e imprimir números
    > binarios, escribir primero una función que permita obtener el número
    > representado en un string de 1s y 0s.
 
@@ -87,15 +88,16 @@ que en general los números estarán representados en hexadecimal o en binario.
    >
    > $ gcc -Wall -m64 programa.c -o programa_64.c
 
-1. Escribir un programa en C que muestre el endianness de la plataforma en la
+1. Escribir un programa en C que muestre el _endianness_ de la plataforma en la
    que se ejecuta el programa.
 
    > Hint: read the book
 
-1. Utilizar la herramienta qemu para ejecutar el programa en distintas arquitecturas.
+1. Utilizar la herramienta [qemu](00-herramientas#qemu) para ejecutar el
+   programa en distintas arquitecturas.
 
    > Hint: pueden instalar las herramientas qemu-user-static gcc gcc-multilib-sparc64-linux-gnu
-   > o utilizar el dockerfile incluido en esta practica.
+   > o utilizar el dockerfile incluido en esta práctica.
    >
    > $ gcc print_endianness.c --static -o print_endianness_x86_64
    >
@@ -129,7 +131,7 @@ que en general los números estarán representados en hexadecimal o en binario.
         1. A = 0xde ; B = 0x13
 
 1. Escribir un programa en C que utilizando *printf* y *scanf* resuelva el
-   ejercicio anterior. Los número deben ser ingresados por separado formato
+   ejercicio anterior. Los números deben ser ingresados por separado en formato
    *0x1234*.
 
 1. Resolver los siguientes problemas de manejo de bits.
@@ -141,7 +143,7 @@ que en general los números estarán representados en hexadecimal o en binario.
     1. (0x62ea >> 2)
 
 1. Escribir una función en C que aproveche las operaciones de bits para setear
-   (poner en 1) o clerear (poner en 0) un bit especifico (index: 0, 1, 2, ...)
+   (poner en 1) o clearear (poner en 0) un bit específico (index: 0, 1, 2, ...)
    dentro de una variable de 32bits. La variable modificada es devuelta por
    return de la función.
 
