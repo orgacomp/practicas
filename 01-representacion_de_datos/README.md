@@ -191,6 +191,17 @@ que en general los números estarán representados en hexadecimal o en binario.
     1. 29626
     1. 46818
 
+1. Asumiendo que las siguientes expresiones son evaluadas en una arquitectura
+   de 32bits que utiliza aritmética en complemento a dos, resolver a que evalúan.
+   1. `-2147483647-1 == 2147483648U`
+   1. `-2147483647-1 < 2147483647`
+   1. `-2147483647-1U < 2147483647`
+   1. `-2147483647-1 < -2147483647`
+   1. `-2147483647-1U < -2147483647`
+   1. `2147483647U > -2147483647-1`
+   1. `2147483647 > (int) 2147483648U`
+   1. `-1 < 0U`
+
 1. Dadas las definiciones *int a, b;* y teniendo en cuenta que los enteros
    signados se representan en complemento a dos. Además, las constantes
    *INT_MIN* e *INT_MAX* representan los valores mínimo y máximo que puede
