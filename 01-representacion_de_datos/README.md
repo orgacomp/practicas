@@ -299,3 +299,29 @@ que en general los números estarán representados en hexadecimal o en binario.
         1. `~((a | (~a + 1)) >> W) & 1`
         1. `~((a >> W) << 1)`
         1. `a >> 2`
+
+1. Convertir los siguientes números en representación decimal a binario de
+   16bits con punto fijo (1bit parte entera, 7bits parte fraccional). Para cada
+   caso indicar el error por representación.
+    1. 1.125
+    1. 0.6723
+    1. 0.98911
+    1. 0.25
+    1. 0.8984
+    1. 0.743
+    1. 1.832
+    1. 0.902
+    1. 0.12300
+    1. 1.1111
+
+1. Convertir los siguientes números representados en punto fijo a decimal.
+    1. 11.101110
+    1. 1101.1111
+    1. 0110.1101
+    1. 010000.01
+    1. 100.10100
+    1. 10.101010
+    1. 1.1011100
+    1. 10001.111
+    1. 0.1110010
+    1. 1.1000010
