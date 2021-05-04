@@ -26,7 +26,7 @@ jobs:
       run: |
         docker run -v ${{ github.workspace }}:/home \
             -w /home/labs/datalab/ \
-            xcancerberox/orga:datalab make tests
+            xcancerberox/orga:datalab make test
 
   grades:
     runs-on: ubuntu-latest
