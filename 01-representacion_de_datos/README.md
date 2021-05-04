@@ -328,17 +328,17 @@ que en general los números estarán representados en hexadecimal o en binario.
 
 1. Convertir las representaciones binarias en punto flotante de 7 bits con 1 bit de signo, 3 bits de exponente y 3 de parte fraccionaria (seeefff) a sus valores numéricos fraccionarios.
 
-    1. 1 111 101
-    1. 0 110 101
-    1. 0 000 110
-    1. 1 110 000
-    1. 1 100 100
+    1. 1111101
+    1. 0110101
+    1. 0000110
+    1. 1110000
+    1. 1100100
    
    > Hint: identificar primero a qué caso de representación de punto flotante IEEE representan (valores normalizados, denormalizados, etc.).
 
 1. Escribir un programa en C que permita *simplemente* realizar la identificación del caso de punto flotante (como indica el Hint del punto anterior) para una codificación de 7 bits (seeefff).
 
-1. Hallar las representaciones binarias en punto flotante de 7 bits con 1 bit de signo, 4 bits de exponente y 4 de parte fraccionaria (seeefff) y luego sus valores numéricos fraccionarios.
+1. Hallar las representaciones binarias en punto flotante de 7 bits con 1 bit de signo, 4 bits de exponente y 4 de parte fraccionaria (seeeeffff) y luego sus valores numéricos fraccionarios.
 
     1. Denormalizado menor
     1. Normalizado mayor
@@ -357,10 +357,11 @@ que en general los números estarán representados en hexadecimal o en binario.
     1. -∞
     1. 14,4
 
-   > Hint: identificar e, E, 2^E, bias, f, M y verificar cumplimiento de v = (-1)^s * M * 2^E.
+   > Hint: identificar primero e, E, 2^E, bias, f, M y verificar cumplimiento de v = (-1)^s * M * 2^E.
 
-1. Resolver a que evalúan las siguientes expresiones de C y justificar por qué.
-Los valores de las variables x, f y d son arbitrarios y sus tipos son respectivamente int, float y double. Además, f y d no pueden ser +∞, −∞ ni NaN. 
+1. Resolver a qué evalúan las siguientes expresiones de C y justificar por qué.
+Los valores de las variables x, f y d son arbitrarios y sus tipos son respectivamente int, float y double. Además, f y d no pueden ser +∞, −∞ ni NaN.
+
    1. `f == -(-f)`
    1. `x == (short) (float) x`
    1. `(d + f) - d == f`
