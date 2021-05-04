@@ -33,11 +33,6 @@ jobs:
     needs: tests
     steps:
     - uses: actions/checkout@v2
-    - name: Make tests
-      run: |
-        docker run -v ${{ github.workspace }}:/home \
-            -w /home/labs/datalab/ \
-            xcancerberox/orga:datalab make tests
     - name: Make grades
       run: |
         docker run -v ${{ github.workspace }}:/home \
