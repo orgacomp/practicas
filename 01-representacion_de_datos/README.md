@@ -328,15 +328,15 @@ que en general los números estarán representados en hexadecimal o en binario.
 
 1. Convertir las representaciones binarias en punto flotante de 7 bits con 1 bit de signo, 3 bits de exponente y 3 de parte fraccionaria (seeefff) a sus valores numéricos fraccionarios.
 
-    1. 1111101
-    1. 0110101
-    1. 0000110
-    1. 1110000
-    1. 1100100
+    1. 0b1111101
+    1. 0b0110101
+    1. 0b0000110
+    1. 0b1110000
+    1. 0b1100100
    
-   > Hint: identificar primero a qué caso de representación de punto flotante IEEE representan (valores normalizados, denormalizados, etc.).
+   > Hint: identificar primero a qué caso de representación de punto flotante IEEE representan (valores normalizados, denormalizados, especiales).
 
-1. Escribir un programa en C que permita *simplemente* realizar la identificación del caso de punto flotante (como indica el Hint del punto anterior) para una codificación de 7 bits (seeefff).
+1. Escribir un programa en C que permita realizar la identificación del caso de punto flotante para un valor con una codificación de 7 bits (seeefff). Basta *simplemente* con identificar los casos e imprimir mensajes utilizando *printf* indicando el caso correspondiente.
 
 1. Hallar las representaciones binarias en punto flotante de 7 bits con 1 bit de signo, 4 bits de exponente y 4 de parte fraccionaria (seeeeffff) y luego sus valores numéricos fraccionarios.
 
