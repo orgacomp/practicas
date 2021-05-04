@@ -15,4 +15,11 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build and test
       run: |
-        docker run -v ${{ github.workspace }}:/home xcancerberox/orga:datalab
+        docker run -v ${{ github.workspace }}:/home \
+            -w /home/labs/datalab/ \
+            xcancerberox/orga:datalab /bin/sh make test
+    - name: Make grades
+      run: |
+        docker run -v ${{ github.workspace }}:/home \
+            -w /home/labs/datalab/ \
+            xcancerberox/orga:datalab /bin/sh make grades
