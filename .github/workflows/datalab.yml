@@ -2,9 +2,9 @@ name: Datalab
 
 on:
   push:
-    branches: [ main ]
+    branches: [ datalab ]
   pull_request:
-    branches: [ main ]
+    branches: [ datalab ]
 
 jobs:
   build:
