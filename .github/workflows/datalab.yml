@@ -8,16 +8,43 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Build and test
       run: |
         docker run -v ${{ github.workspace }}:/home \
             -w /home/labs/datalab/ \
-            xcancerberox/orga:datalab /bin/sh make test
+            xcancerberox/orga:datalab /bin/sh make
+    - uses: actions/upload-artifact@v2
+      with:
+        name: datalab_build
+        path: /home/labs/datalab/ #
+
+  tests:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      with:
+        name: datalab_build
+        path: /home/labs/datalab/
+    - name: Make grades
+      run: |
+        docker run -v ${{ github.workspace }}:/home \
+            -w /home/labs/datalab/ \
+            xcancerberox/orga:datalab /bin/sh make grades
+
+  grades:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v2
+      with:
+        name: datalab_build
+        path: /home/labs/datalab/
     - name: Make grades
       run: |
         docker run -v ${{ github.workspace }}:/home \
