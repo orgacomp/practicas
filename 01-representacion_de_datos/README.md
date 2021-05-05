@@ -334,7 +334,7 @@ que en general los números estarán representados en hexadecimal o en binario.
     1. 0b1110000
     1. 0b1100100
    
-   > Hint: identificar primero a qué caso de representación de punto flotante IEEE representan (valores normalizados, denormalizados, especiales).
+   > Hint: identificar primero a qué caso de representación de punto flotante simil IEEE representan (valores normalizados, denormalizados, especiales).
 
 1. Escribir un programa en C que permita realizar la identificación del caso de punto flotante para un valor con una codificación de 7 bits (seeefff). Basta *simplemente* con identificar los casos e imprimir mensajes utilizando *printf* indicando el caso correspondiente.
 
