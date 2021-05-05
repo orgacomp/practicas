@@ -348,14 +348,15 @@ que en general los números estarán representados en hexadecimal o en binario.
 
 1. Convertir los siguientes valores numéricos a su representación en punto flotante de 7 bits con 1 bit de signo, 3 bits de exponente y 3 de parte fraccionaria (seeefff).
 
-    1. 15,0
+    1. 15.0
     1. NaN
-    1. -4,25
-    1. -0,125
-    1. 0,0
-    1. 1,0
+    1. -4.25
+    1. -0.125
+    1. 6.75
+    1. 0.0
+    1. 1.0
     1. -∞
-    1. 14,4
+    1. 14.4
 
    > Hint: identificar primero e, E, 2^E, bias, f, M y verificar cumplimiento de v = (-1)^s * M * 2^E.
 
