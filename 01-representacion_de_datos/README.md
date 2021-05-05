@@ -338,7 +338,7 @@ que en general los números estarán representados en hexadecimal o en binario.
 
 1. Escribir un programa en C que permita realizar la identificación del caso de punto flotante para un valor con una codificación de 7 bits (seeefff). Basta *simplemente* con identificar los casos e imprimir mensajes utilizando *printf* indicando el caso correspondiente.
 
-1. Hallar las representaciones binarias en punto flotante de 7 bits con 1 bit de signo, 4 bits de exponente y 4 de parte fraccionaria (seeeeffff) y luego sus valores numéricos fraccionarios.
+1. Hallar las representaciones binarias en punto flotante de 7 bits con 1 bit de signo, 4 bits de exponente y 4 de parte fraccionaria (seeeeffff) y luego sus valores numéricos en base 10.
 
     1. Denormalizado menor
     1. Normalizado mayor
