@@ -296,7 +296,7 @@ static int test_3_arg(funct_t f, funct_t ft,
 static int test_function(test_ptr t) {
     int test_counts[3];    /* number of test values for each arg */
     int args = t->args;    /* number of function arguments */
-    int arg_test_range[3]; /* test range for each argument */
+    int arg_test_range[3] = {0,0,0}; /* test range for each argument */
     int i, a1, a2, a3;
     int errors = 0;
 
