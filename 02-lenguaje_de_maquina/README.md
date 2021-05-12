@@ -65,12 +65,12 @@ En esta sección se supone siempre una arquitectura de 64 bits.
 
    a.
 
-    ```c
-    typedef struct {
-        long l;
-        char c;
-        int i;
-    } a;
+      ```c
+      typedef struct {      typedef struct {
+          long l;               long l;
+          char c;               char c;
+          int i;                int i;
+      } a;                  } __attribute__ ((packed)) a_packed;
       ```
 
       1. sizeof(a):
@@ -81,12 +81,12 @@ En esta sección se supone siempre una arquitectura de 64 bits.
    b.
 
       ```c
-    typedef struct {
-        int i;
-        long l;
-        char c;
-        int j;
-    } b;
+      typedef struct {      typedef struct {
+          int i;                int i;
+          long l;               long l;
+          char c;               char c;
+          int j;                int j;
+      } b;                  } __attribute__ ((packed)) b_packed;
       ```
 
       1. sizeof(b):
@@ -98,11 +98,11 @@ En esta sección se supone siempre una arquitectura de 64 bits.
    c.
 
       ```c
-    typedef struct {
-        short v[9];
-        int *x;
-        char c;
-    } c;
+      typedef struct {      typedef struct {
+          short v[9];           short v[9];
+          int *x;               int *x;
+          char c;               char c;
+      } c;                  } __attribute__ ((packed)) c_packed;
       ```
     
       1. sizeof( c):
@@ -127,6 +127,41 @@ En esta sección se supone siempre una arquitectura de 64 bits.
       1. offsetof(d, s):
 
     > Hint: investigar la librería *stddef.h*.
+
+
+1. Probar los programas que se generan con el siguiente código C en
+   arquitecturas x86-64 y SPARC y analizar el resultado.
+
+   ```c
+   #include <stdio.h>
+   #include <stddef.h>
+
+   typedef struct {
+       unsigned char role;
+       int hp;
+   } __attribute__((packed)) character;
+
+   int main(void) {
+       character ex[2] = {{0x35, 100}, {0xaf, 127}};
+       int *php_0 = &ex[0].hp;
+       int *php_1 = &ex[1].hp;
+
+       printf("sizeof(character) = %lu\n", sizeof(character));
+       printf("offsetof(character, role) = %lu\n", offsetof(character, role));
+       printf("offsetof(character, hp) = %lu\n", offsetof(character, hp));
+
+       printf("ex[0].hp = %d\n", ex[0].hp);
+       printf("ex[1].hp = %d\n", ex[1].hp);
+
+       printf("php_0 = %p\n", (void*)php_0);
+       printf("php_1 = %p\n", (void*)php_1);
+
+       printf("*php_0 = %d\n", *php_0);
+       printf("*php_1 = %d\n", *php_1);
+
+       return 0;
+   }
+   ```
 
 ### Proceso de compilación
 
@@ -202,10 +237,10 @@ contrario).
    declarados con *typedef*, se busca implementar el siguiente movimiento:
 
     ```c
-    origen_t *op;
-    dest_t *dp;
+    origen_t *o;
+    dest_t *d;
 
-    *dp = (dest_t) *op;
+    *dp = (dest_t) *sp;
     ```
     
     Escribir las instrucciones de código assembly apropiadas para realizar los movimientos de datos indicados con formato: origen_t -> dest_t.
