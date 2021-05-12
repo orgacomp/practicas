@@ -19,8 +19,7 @@ En esta sección se supone siempre una arquitectura de 64 bits.
     1. sizeof(\*a):
     1. sizeof(&a[0]):
     1. &a[3] - &a[1]:
-    \
-    &nbsp;
+
     ```c
     short b[] = {1, 100, 1000, 10000};
     ```
@@ -28,24 +27,21 @@ En esta sección se supone siempre una arquitectura de 64 bits.
     1. sizeof(\*b):
     1. sizeof(&b[0]):
     1. &b[3] - &b[1]:
-    \
-    &nbsp;
+
     ```c
     char *c = "abcdef";
     ```
     1. sizeof( c):
     1. \*(c+4):
     1. strlen(c+1):
-    \
-    &nbsp;
+
     ```c
     char *d = c;
     ```
     1. sizeof(d):
     1. sizeof(*d):
     1. \*(d+4):
-    \
-    &nbsp;
+
     ```c
     char e[] = "abcdee";
     ```
@@ -55,8 +51,7 @@ En esta sección se supone siempre una arquitectura de 64 bits.
     1. &e[4] - &e[0]:
     1. strlen(&e[2]):
     1. e[5] - e[4]:
-    \
-    &nbsp;
+
     ```c
     char f[] = {'a', 'b', 'c', 'd', 'e', 'e', '\0'};
     ```
@@ -195,16 +190,14 @@ contrario).
     ```c
     origen_t *op;
     dest_t *dp;
-  
-    *dp = (dest_t) *op; 
+
+    *dp = (dest_t) *op;
     ```
     
-    Escribir las instrucciones de código assembly apropiadas para realizar los
-    movimientos de datos indicados con formato origen_t -> dest_t.
-
-    La primera instrucción debe leer memoria, realizar la conversión apropiada
-    y setear la porción apropiada de %rax y la segunda debe escribir la porción
-    de %rax seteada en memoria.
+    Escribir las instrucciones de código assembly apropiadas para realizar los movimientos de datos indicados con formato: origen_t -> dest_t.
+    Asumir que el valor de op está almacenado en %rdi y el valor de dp en %rsi.
+    La primera instrucción debe leer memoria, realizar la conversión correcta y setear la porción apropiada de %rax.
+    La segunda debe escribir la porción de %rax seteada en memoria.
   
     Ejemplo: long -> long:  
   
@@ -246,8 +239,7 @@ contrario).
         movq    %rdi, %rax
         ret
     ```
-    \
-    &nbsp;
+
     1.
     ```c
     long int_to_long(int x) {
