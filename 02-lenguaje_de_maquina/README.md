@@ -1,51 +1,70 @@
 02 - Lenguaje de máquina
 ============================
 
-### Introducción - Manejo de punteros y tipos en C
+## Introducción
+### Manejo de punteros y tipos en C
 
-Esta primera sección tiene como objetivo reafirmar algunas ideas relacionadas al manejo de punteros y tipos en C que nos serán útiles para comprender código máquina.
+Esta primera sección tiene como objetivo reafirmar algunas ideas relacionadas al manejo de punteros y tipos en C que serán útiles para comprender código máquina.
+En esta sección se supone siempre una arquitectura de 64 bits.
 
 
-1. Dadas las definiciones indicar el valor de las expresiones, suponiendo una arquitectura de 64 bits.
+1. Dadas las definiciones indicar el valor de las expresiones.
 
+    ```c
     long a[] = {1, 100, 1000, 10000};
+    ```
     1. sizeof(a):
-    1. sizeof(*a):
+    1. sizeof(\*a):
     1. sizeof(&a[0]):
     1. &a[3] - &a[1]:
-
+    \
+    &nbsp;
+    ```c
     short b[] = {1, 100, 1000, 10000};
+    ```
     1. sizeof(b):
-    1. sizeof(*b):
+    1. sizeof(\*b):
     1. sizeof(&b[0]):
     1. &b[3] - &b[1]:
-
+    \
+    &nbsp;
+    ```c
     char *c = "abcdef";
+    ```
     1. sizeof( c):
-    1. *(c+4):
+    1. \*(c+4):
     1. strlen(c+1):
-
+    \
+    &nbsp;
+    ```c
     char *d = c;
+    ```
     1. sizeof(d):
     1. sizeof(*d):
-    1. *(d+4):
-    
+    1. \*(d+4):
+    \
+    &nbsp;
+    ```c
     char e[] = "abcdee";
+    ```
     1. sizeof(e):
-    1. *(e+1):
+    1. \*(e+1):
     1. e[1]:
     1. &e[4] - &e[0]:
     1. strlen(&e[2]):
     1. e[5] - e[4]:
-    
+    \
+    &nbsp;
+    ```c
     char f[] = {'a', 'b', 'c', 'd', 'e', 'e', '\0'};
+    ```
     1. sizeof(f):
-    1. *(f+2):
+    1. \*(f+2):
     1. f[2]:
     1. strlen(&f[2]):
 
 
-1. Dadas las definiciones indicar *sizeof* u *offset* según corresponda, suponiendo una arquitectura de 64 bits.
+1. Dadas las definiciones indicar *sizeof* u *offset* según corresponda.
 
     ```c
     typedef struct {
@@ -99,11 +118,11 @@ Esta primera sección tiene como objetivo reafirmar algunas ideas relacionadas a
     > Hint: investigar la librería *stddef.h*.
 
 
-### Código assembly
+## Código assembly
 
-En los siguientes ejercicios supondremos siempre una arquitectura de 64 bits con código máquina x86-64 con sintaxis AT&T, a menos que se indique lo contrario.
+En los siguientes ejercicios supondremos siempre una arquitectura de 64 bits con código máquina x86-64 con sintaxis AT&T (a menos que se indique lo contrario).
 
-1. Completar con un sufijo apropiado cada una de las siguientes instrucciones de código assembly, suponiendo una arquitectura de 64 bits.
+1. Completar con un sufijo apropiado cada una de las siguientes instrucciones de código assembly.
 
     1. mov___ %rax, (%rdi)
     1. mov___ $0xf4, %bl
@@ -114,7 +133,7 @@ En los siguientes ejercicios supondremos siempre una arquitectura de 64 bits con
     1. mov___ %r8, (%rsi)
     1. mov___ (%rsp, %rdi, 4), %sil
 
-1. Asumiendo que las variables o y d son de los tipos origen_t y dest_t declarados con typedef, se busca implementar el siguiente movimiento:
+1. Asumiendo que las variables o y d son de los tipos *origen_t* y *dest_t* declarados con *typedef*, se busca implementar el siguiente movimiento:
 
     ```c
     origen_t *o;
@@ -156,7 +175,8 @@ En los siguientes ejercicios supondremos siempre una arquitectura de 64 bits con
         movq    %rdi, %rax
         ret
     ```
-    
+    \
+    &nbsp;
     1.
     ```c
     long int_to_long(int x) {
