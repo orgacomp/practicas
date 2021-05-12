@@ -1,7 +1,8 @@
 FROM debian:testing
 
-RUN apt-get update -y
-RUN apt-get install -y eatmydata
+RUN echo "deb http://deb.debian.org/debian buster-backports main contrib non-free" >> /etc/apt/sources.list.d/buster-backports.list && \
+    echo "deb http://deb.debian.org/debian buster non-free" >> /etc/apt/sources.list && \
+    apt-get update -y && apt-get install -y eatmydata
 RUN eatmydata apt-get install -y \
                                 info \
                                 gcc \
