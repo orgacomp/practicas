@@ -199,17 +199,17 @@ contrario).
     Completar con el tipo de operando y el valor equivalente de los siguientes
     operandos:
 
-    | Operando | Tipo | Valor |
-    | -------- | ---- | ----- |
-    | `%rax` | | |
-    | `0x104` | | |
-    | `$0x108` | | |
-    | `(%rax)` | | |
-    | `4(%rax)` | | |
-    | `9(%rax, %rdx)` | | |
-    | `260(%rcx, %rdx)` | | |
-    | `0xFC(, %rcx, 4)` | | |
-    | `(%rax, %rdx, 4)` | | |
+    | Operando          | Tipo | Valor |
+    | ----------------- | ---- | ----- |
+    | `%rax`            |      |       |
+    | `0x104`           |      |       |
+    | `$0x108`          |      |       |
+    | `(%rax)`          |      |       |
+    | `4(%rax)`         |      |       |
+    | `9(%rax, %rdx)`   |      |       |
+    | `260(%rcx, %rdx)` |      |       |
+    | `0xFC(, %rcx, 4)` |      |       |
+    | `(%rax, %rdx, 4)` |      |       |
 
 1. Completar con un sufijo apropiado cada una de las siguientes instrucciones
    de código assembly.
