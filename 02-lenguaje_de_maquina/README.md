@@ -12,59 +12,68 @@ En esta sección se supone siempre una arquitectura de 64 bits.
 
 1. Dadas las definiciones indicar el valor de las expresiones.
 
+    1. Dado:
     ```c
     long a[] = {1, 100, 1000, 10000};
     ```
-    1. sizeof(a):
-    1. sizeof(\*a):
-    1. sizeof(&a[0]):
-    1. &a[3] - &a[1]:
+    Indicar:
+        1. `sizeof(a)`:
+        1. `sizeof(*a)`:
+        1. `sizeof(&a[0])`:
+        1. `&a[3] - &a[1]`:
 
+    1. Dado:
     ```c
     short b[] = {1, 100, 1000, 10000};
     ```
-    1. sizeof(b):
-    1. sizeof(\*b):
-    1. sizeof(&b[0]):
-    1. &b[3] - &b[1]:
+    Indicar:
+        1. `sizeof(b)`:
+        1. `sizeof(*b)`:
+        1. `sizeof(&b[0])`:
+        1. `&b[3] - &b[1]`:
 
+    1. Dado:
     ```c
     char *c = "abcdef";
     ```
-    1. sizeof( c):
-    1. \*(c+4):
-    1. strlen(c+1):
+    Indicar:
+        1. `sizeof(c)`:
+        1. `*(c+4)`:
+        1. `strlen(c+1)`:
 
+    1. Dado:
     ```c
     char *d = c;
     ```
-    1. sizeof(d):
-    1. sizeof(*d):
-    1. \*(d+4):
+    Indicar:
+        1. `sizeof(d)`:
+        1. `sizeof(*d)`:
+        1. `*(d+4)`:
 
+    1. Dado:
     ```c
     char e[] = "abcdee";
     ```
-    1. sizeof(e):
-    1. \*(e+1):
-    1. e[1]:
-    1. &e[4] - &e[0]:
-    1. strlen(&e[2]):
-    1. e[5] - e[4]:
+    Indicar:
+        1. `sizeof(e)`:
+        1. `*(e+1)`:
+        1. `e[1]`:
+        1. `&e[4] - &e[0]`:
+        1. `strlen(&e[2])`:
+        1. `e[5] - e[4]`:
 
+    1. Dado:
     ```c
     char f[] = {'a', 'b', 'c', 'd', 'e', 'e', '\0'};
     ```
-    1. sizeof(f):
-    1. \*(f+2):
-    1. f[2]:
-    1. strlen(&f[2]):
-
+    Indicar:
+        1. `sizeof(f)`:
+        1. `*(f+2)`:
+        1. `f[2]`:
+        1. `strlen(&f[2])`:
 
 1. Dadas las definiciones indicar *sizeof* u *offset* según corresponda.
-
-   a.
-
+    1. Dado:
       ```c
       typedef struct {      typedef struct {
           long l;               long l;
@@ -72,14 +81,13 @@ En esta sección se supone siempre una arquitectura de 64 bits.
           int i;                int i;
       } a;                  } __attribute__ ((packed)) a_packed;
       ```
+    Indicar:
+        1. sizeof(a):
+        1. offsetof(a, l):
+        1. offsetof(a, i):
+        1. offsetof(a, c):
 
-      1. sizeof(a):
-      1. offsetof(a, l):
-      1. offsetof(a, i):
-      1. offsetof(a, c):
-
-   b.
-
+    1. Dado:
       ```c
       typedef struct {      typedef struct {
           int i;                int i;
@@ -88,15 +96,14 @@ En esta sección se supone siempre una arquitectura de 64 bits.
           int j;                int j;
       } b;                  } __attribute__ ((packed)) b_packed;
       ```
+    Indicar:
+        1. sizeof(b):
+        1. offsetof(b, i):
+        1. offsetof(b, l):
+        1. offsetof(b, c):
+        1. offsetof(b, j):
 
-      1. sizeof(b):
-      1. offsetof(b, i):
-      1. offsetof(b, l):
-      1. offsetof(b, c):
-      1. offsetof(b, j):
-
-   c.
-
+    1. Dado:
       ```c
       typedef struct {      typedef struct {
           short v[9];           short v[9];
@@ -105,26 +112,26 @@ En esta sección se supone siempre una arquitectura de 64 bits.
       } c;                  } __attribute__ ((packed)) c_packed;
       ```
 
-      1. sizeof( c):
-      1. offsetof(c, v):
-      1. offsetof(c, x):
-      1. offsetof(c, c):
+    Indicar:
+        1. sizeof( c):
+        1. offsetof(c, v):
+        1. offsetof(c, x):
+        1. offsetof(c, c):
 
-   d.
-
+    1. Dado:
       ```c
-    typedef union {
-        char *m;
-        struct {
-            int n;
-            char x;
-        } s;
-    } d;
-    ```
-
-      1. sizeof(d):
-      1. offsetof(d, m):
-      1. offsetof(d, s):
+      typedef union {
+          char *m;
+          struct {
+              int n;
+              char x;
+          } s;
+      } d;
+      ```
+    Indicar:
+        1. sizeof(d):
+        1. offsetof(d, m):
+        1. offsetof(d, s):
 
     > Hint: investigar la librería *stddef.h*.
 
