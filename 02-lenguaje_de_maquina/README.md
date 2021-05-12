@@ -335,6 +335,8 @@ contrario).
 
     Escribir las instrucciones de código assembly apropiadas para realizar los
     movimientos de datos indicados con formato origen_t -> dest_t.
+    
+    Asumir que los valores de op y dp están almacenados en %rdi y %rsi respectivamente.
 
     La primera instrucción debe leer memoria, realizar la conversión apropiada
     y setear la porción apropiada de %rax y la segunda debe escribir la porción
