@@ -264,14 +264,14 @@ contrario).
     1. `movl %eax, %rdx`
     1. `movb %si, 8(%rbp)`
 
-1. Asumiendo que las variables o y d son de los tipos *origen_t* y *dest_t*
+1. Asumiendo que las variables op y dp son de los tipos *origen_t* y *dest_t*
    declarados con *typedef*, se busca implementar el siguiente movimiento:
 
     ```c
-    origen_t *o;
-    dest_t *d;
+    origen_t *op;
+    dest_t *dp;
 
-    *dp = (dest_t) *sp;
+    *dp = (dest_t) *op;
     ```
 
     Escribir las instrucciones de código assembly apropiadas para realizar los
