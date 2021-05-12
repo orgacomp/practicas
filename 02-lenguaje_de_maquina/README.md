@@ -193,21 +193,21 @@ contrario).
    declarados con *typedef*, se busca implementar el siguiente movimiento:
 
     ```c
-    origen_t *o;
-    dest_t *d;
+    origen_t *op;
+    dest_t *dp;
   
-    *dp = (dest_t) *sp; 
+    *dp = (dest_t) *op; 
     ```
-
+    
     Escribir las instrucciones de código assembly apropiadas para realizar los
     movimientos de datos indicados con formato origen_t -> dest_t.
 
     La primera instrucción debe leer memoria, realizar la conversión apropiada
     y setear la porción apropiada de %rax y la segunda debe escribir la porción
     de %rax seteada en memoria.
-
-    Ejemplo: long -> long:
-
+  
+    Ejemplo: long -> long:  
+  
     ```
     movq (%rdi), %rax
     movq %rax, (%rsi)
