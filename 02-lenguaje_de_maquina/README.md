@@ -75,11 +75,16 @@ En esta sección se supone siempre una arquitectura de 64 bits.
 1. Dadas las definiciones indicar *sizeof* u *offset* según corresponda.
     1. Dado:
         ```c
-        typedef struct {      typedef struct {
-            long l;               long l;
-            char c;               char c;
-            int i;                int i;
-        } a;                  } __attribute__ ((packed)) a_packed;
+        typedef struct {
+            long l;
+            char c;
+            int i;
+        } __attribute__ ((packed)) a_packed;
+        typedef struct {
+            long l;
+            char c;
+            int i;
+        } a;
         ```
         Indicar:
         1. `sizeof(a)`
@@ -89,12 +94,18 @@ En esta sección se supone siempre una arquitectura de 64 bits.
 
     1. Dado:
         ```c
-        typedef struct {      typedef struct {
-            int i;                int i;
-            long l;               long l;
-            char c;               char c;
-            int j;                int j;
-        } b;                  } __attribute__ ((packed)) b_packed;
+        typedef struct {
+            int i;
+            long l;
+            char c;
+            int j;
+        } __attribute__ ((packed)) b_packed;
+        typedef struct {
+            int i;
+            long l;
+            char c;
+            int j;
+        } b;
         ```
         Indicar:
         1. `sizeof(b)`
@@ -105,11 +116,16 @@ En esta sección se supone siempre una arquitectura de 64 bits.
 
     1. Dado:
         ```c
-        typedef struct {      typedef struct {
-            short v[9];           short v[9];
-            int *x;               int *x;
-            char c;               char c;
-        } c;                  } __attribute__ ((packed)) c_packed;
+        typedef struct {
+            short v[9];
+            int *x;
+            char c;
+        } __attribute__ ((packed)) c_packed;
+        typedef struct {
+            short v[9];
+            int *x;
+            char c;
+        } c;
         ```
         Indicar:
         1. `sizeof( c)`
@@ -193,14 +209,12 @@ contrario).
     | 0x104     | 0xAB  |
     | 0x108     | 0x13  |
     | 0x10C     | 0x11  |
-    | --------- | ----- |
 
     | Registro | Valor |
     | -------- | ----- |
     | `%rax`   | 0x100 |
     | `%rcx`   | 0x1   |
     | `%rdx`   | 0x3   |
-    | -------- | ----- |
 
     Completar con el tipo de operando y el valor equivalente de los siguientes
     operandos:
