@@ -78,7 +78,7 @@ En esta sección se supone siempre una arquitectura de 64 bits.
       1. offsetof(a, i):
       1. offsetof(a, c):
 
-   a.
+   b.
 
       ```c
     typedef struct {
@@ -95,7 +95,7 @@ En esta sección se supone siempre una arquitectura de 64 bits.
       1. offsetof(b, c):
       1. offsetof(b, j):
 
-   a.
+   c.
 
       ```c
     typedef struct {
@@ -110,7 +110,7 @@ En esta sección se supone siempre una arquitectura de 64 bits.
       1. offsetof(c, x):
       1. offsetof(c, c):
 
-   a.
+   d.
 
       ```c
     typedef union {
