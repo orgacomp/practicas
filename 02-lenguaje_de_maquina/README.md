@@ -119,6 +119,15 @@ En esta sección se supone siempre una arquitectura de 64 bits.
 
     > Hint: investigar la librería *stddef.h*.
 
+### Proceso de compilación
+
+1. Hacer un programa en C, sin includes, que sume dos variable. El main debe
+   devolver `1` si la suma da mayor que una constante `#define VAR_MAX 100`, `0`
+   en caso contrario. Conseguir el pre compilado, el código assembler y el código
+   maquina del programa.
+
+    > Hint: usar las diferentes opciones de gcc, xdd, y objdump.
+
 
 ## Código assembly
 
