@@ -264,47 +264,6 @@ contrario).
     1. `movl %eax, %rdx`
     1. `movb %si, 8(%rbp)`
 
-1. Asumiendo que las variables op y dp son de los tipos *origen_t* y *dest_t*
-   declarados con *typedef*, se busca implementar el siguiente movimiento:
-
-    ```c
-    origen_t *op;
-    dest_t *dp;
-
-    *dp = (dest_t) *op;
-    ```
-
-    Escribir las instrucciones de código assembly apropiadas para realizar los
-    movimientos de datos indicados con formato origen_t -> dest_t.
-
-    La primera instrucción debe leer memoria, realizar la conversión apropiada
-    y setear la porción apropiada de %rax y la segunda debe escribir la porción
-    de %rax seteada en memoria.
-
-    Ejemplo: long -> long:
-
-    ```
-    movq (%rdi), %rax
-    movq %rax, (%rsi)
-    ```
-
-    1. `short` -> `short`
-    1. `short` -> `long`
-    1. `char` -> `int`
-    1. `char` -> `unsigned`
-    1. `int` -> `char`
-    1. `char` -> `short`
-
-1. Indicar el valor de `%rax` para cada linea del siguiente código asm.
-    ```
-    example:
-        movabsq $0x0011223344556677, %rax
-        movb $0xaa, %dl
-        movb %dl, %al
-        movsbq %dl, %rax
-        movzbq %dl, %rax
-    ```
-
 1. Proveer la implementación en código assembly de las siguientes funciones
    escritas en C. Considerar el siguiente ejemplo:
 
@@ -362,6 +321,47 @@ contrario).
     long unsigned_to_long(unsigned x) {
         return x;
     }
+    ```
+
+1. Asumiendo que las variables op y dp son de los tipos *origen_t* y *dest_t*
+   declarados con *typedef*, se busca implementar el siguiente movimiento:
+
+    ```c
+    origen_t *op;
+    dest_t *dp;
+
+    *dp = (dest_t) *op;
+    ```
+
+    Escribir las instrucciones de código assembly apropiadas para realizar los
+    movimientos de datos indicados con formato origen_t -> dest_t.
+
+    La primera instrucción debe leer memoria, realizar la conversión apropiada
+    y setear la porción apropiada de %rax y la segunda debe escribir la porción
+    de %rax seteada en memoria.
+
+    Ejemplo: long -> long:
+
+    ```
+    movq (%rdi), %rax
+    movq %rax, (%rsi)
+    ```
+
+    1. `short` -> `short`
+    1. `short` -> `long`
+    1. `char` -> `int`
+    1. `char` -> `unsigned`
+    1. `int` -> `char`
+    1. `char` -> `short`
+
+1. Indicar el valor de `%rax` para cada linea del siguiente código asm.
+    ```
+    example:
+        movabsq $0x0011223344556677, %rax
+        movb $0xaa, %dl
+        movb %dl, %al
+        movsbq %dl, %rax
+        movzbq %dl, %rax
     ```
 
 1. Dado el siguiente código asm escribir una función en C que se compile a lo
