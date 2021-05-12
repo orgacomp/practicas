@@ -6,3 +6,5 @@ curso Moreno/de Andres.
 [00 - Herramientas](00-herramientas/README.md)
 
 [01 - Representación de datos](01-representacion_de_datos/README.md)
+
+[02 - Lenguaje de Máquina](02-lenguaje_de_maquina/README.md)
