@@ -193,6 +193,36 @@ $ qemu-sparc64-static my_app_sparc
 
 
 
+<a name="GCC"/>
+
+## GCC
+
+[GCC](https://www.gnu.org/software/gcc/) es el GNU C compiler. Esta herramienta nos permite
+convertir un programa en lenguaje C a un programa en lenguaje maquina. El
+proceso de conversión implica varios pasos:
+
+* Pre compilación: toma el código C y reemplaza cualquier `#include` y
+  `#define` que hayamos usado. Salida `prog.i`
+* Compilación: toma el `prog.i` y convierte las instrucciones en código C a
+  instrucciones en código ASM. Salida `prog.s`
+* Assembly: toma el `prog.s` y reemplaza cada instrucción ASM por el código
+  maquina correspondiente. Salida `prog.o`
+* Linker: en el caso que tengamos más de un `.o` se encarga de unirlos y
+  generar el binario final.
+
+### Opciones de GCC
+
+* `$ gcc -Og main.c`: compila el código utilizando el nivel de optimización
+  `g`. Existen varios niveles de optimización: `g` para que el asm sea lo mas
+  parecido al código c, `s` para que optimice espacio, `1` y `2` optimizaciones
+  de ejecución.
+* `$ gcc -E main.c`: para la compilación en la etapa del Precompilador.
+* `$ gcc -S main.c`: para la compilación en la etapa del Compilador.
+* `$ gcc -c main.c`: para la compilación en la etapa del Assembly.
+* `$ gcc -g main.c`: agrega símbolos de debbuging al binario final.
+
+
+
 <a name="GDB"/>
 
 ## GDB
