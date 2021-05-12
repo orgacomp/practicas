@@ -63,26 +63,56 @@ En esta sección se supone siempre una arquitectura de 64 bits.
 
 1. Dadas las definiciones indicar *sizeof* u *offset* según corresponda.
 
+   1.
+
     ```c
     typedef struct {
         long l;
         char c;
-        int;
+        int i;
     } a;
+      ```
 
+      1. sizeof(a):
+      1. offsetof(a, l):
+      1. offsetof(a, i):
+      1. offsetof(a, c):
+
+   1.
+
+      ```c
     typedef struct {
         int i;
         long l;
         char c;
         int j;
     } b;
+      ```
 
+      1. sizeof(b):
+      1. offsetof(b, i):
+      1. offsetof(b, l):
+      1. offsetof(b, c):
+      1. offsetof(b, j):
+
+   1.
+
+      ```c
     typedef struct {
         short v[9];
         int *x;
         char c;
     } c;
+      ```
     
+      1. sizeof( c):
+      1. offsetof(c, v):
+      1. offsetof(c, x):
+      1. offsetof(c, c):
+
+   1.
+
+      ```c
     typedef union {
         char *m;
         struct {
@@ -92,25 +122,9 @@ En esta sección se supone siempre una arquitectura de 64 bits.
     } d;
     ```
 
-    sizeof(a):
-    offsetof(a, l):
-    offsetof(a, l):
-    offsetof(a, l):
-
-    sizeof(b):
-    offsetof(b, i):
-    offsetof(b, l):
-    offsetof(b, c):
-    offsetof(b, j):
-
-    sizeof( c):
-    offsetof(c, v):
-    offsetof(c, x):
-    offsetof(c, c):
-
-    sizeof(d):
-    offsetof(d, m):
-    offsetof(d, s):
+      1. sizeof(d):
+      1. offsetof(d, m):
+      1. offsetof(d, s):
 
     > Hint: investigar la librería *stddef.h*.
 
