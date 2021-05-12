@@ -1,10 +1,12 @@
-02 - Lenguaje de máquina
-============================
+# 02 - Lenguaje de máquina
 
 ## Introducción
+
 ### Manejo de punteros y tipos en C
 
-Esta primera sección tiene como objetivo reafirmar algunas ideas relacionadas al manejo de punteros y tipos en C que serán útiles para comprender código máquina.
+Esta primera sección tiene como objetivo reafirmar algunas ideas relacionadas
+al manejo de punteros y tipos en C que serán útiles para comprender código
+máquina.
 En esta sección se supone siempre una arquitectura de 64 bits.
 
 
@@ -95,45 +97,49 @@ En esta sección se supone siempre una arquitectura de 64 bits.
     } d;
     ```
 
-    sizeof(a):  
-    offsetof(a, l):  
-    offsetof(a, l):  
-    offsetof(a, l):  
-    
-    sizeof(b):  
-    offsetof(b, i):  
-    offsetof(b, l):  
-    offsetof(b, c):  
-    offsetof(b, j):  
-    
-    sizeof( c):  
-    offsetof(c, v):  
-    offsetof(c, x):  
-    offsetof(c, c):  
-    
-    sizeof(d):  
-    offsetof(d, m):  
-    offsetof(d, s):  
+    sizeof(a):
+    offsetof(a, l):
+    offsetof(a, l):
+    offsetof(a, l):
+
+    sizeof(b):
+    offsetof(b, i):
+    offsetof(b, l):
+    offsetof(b, c):
+    offsetof(b, j):
+
+    sizeof( c):
+    offsetof(c, v):
+    offsetof(c, x):
+    offsetof(c, c):
+
+    sizeof(d):
+    offsetof(d, m):
+    offsetof(d, s):
 
     > Hint: investigar la librería *stddef.h*.
 
 
 ## Código assembly
 
-En los siguientes ejercicios supondremos siempre una arquitectura de 64 bits con código máquina x86-64 con sintaxis AT&T (a menos que se indique lo contrario).
+En los siguientes ejercicios supondremos siempre una arquitectura de 64 bits
+con código máquina x86-64 con sintaxis AT&T (a menos que se indique lo
+contrario).
 
-1. Completar con un sufijo apropiado cada una de las siguientes instrucciones de código assembly.
+1. Completar con un sufijo apropiado cada una de las siguientes instrucciones
+   de código assembly.
 
-    1. mov___ %rax, (%rdi)
-    1. mov___ $0xf4, %bl
-    1. mov___ (%rdx), %rax
-    1. mov___ %eax, (%rsp)
-    1. mov___ %cx, (%rax)
-    1. mov___ (%rax), %si
-    1. mov___ %r8, (%rsi)
-    1. mov___ (%rsp, %rdi, 4), %sil
+    1. `mov___ %rax, (%rdi)`
+    1. `mov___ $0xf4, %bl`
+    1. `mov___ (%rdx), %rax`
+    1. `mov___ %eax, (%rsp)`
+    1. `mov___ %cx, (%rax)`
+    1. `mov___ (%rax), %si`
+    1. `mov___ %r8, (%rsi)`
+    1. `mov___ (%rsp, %rdi, 4), %sil`
 
-1. Asumiendo que las variables o y d son de los tipos *origen_t* y *dest_t* declarados con *typedef*, se busca implementar el siguiente movimiento:
+1. Asumiendo que las variables o y d son de los tipos *origen_t* y *dest_t*
+   declarados con *typedef*, se busca implementar el siguiente movimiento:
 
     ```c
     origen_t *o;
@@ -141,25 +147,30 @@ En los siguientes ejercicios supondremos siempre una arquitectura de 64 bits con
   
     *dp = (dest_t) *sp; 
     ```
-    
-    Escribir las instrucciones de código assembly apropiadas para realizar los movimientos de datos indicados con formato origen_t -> dest_t.
-    La primera instrucción debe leer memoria, realizar la conversión apropiada y setear la porción apropiada de %rax y la segunda debe escribir la porción de %rax seteada en memoria.
-  
-    Ejemplo: long -> long:  
-  
+
+    Escribir las instrucciones de código assembly apropiadas para realizar los
+    movimientos de datos indicados con formato origen_t -> dest_t.
+
+    La primera instrucción debe leer memoria, realizar la conversión apropiada
+    y setear la porción apropiada de %rax y la segunda debe escribir la porción
+    de %rax seteada en memoria.
+
+    Ejemplo: long -> long:
+
     ```
     movq (%rdi), %rax
     movq %rax, (%rsi)
     ```
-  
-    1. short -> short
-    1. short -> long
-    1. char -> int  
-    1. char -> unsigned
-    1. int -> char
-    1. char -> short
 
-1. Proveer la implementación en código assembly de las siguientes funciones escritas en C. Considerar el siguiente ejemplo:
+    1. `short` -> `short`
+    1. `short` -> `long`
+    1. `char` -> `int`
+    1. `char` -> `unsigned`
+    1. `int` -> `char`
+    1. `char` -> `short`
+
+1. Proveer la implementación en código assembly de las siguientes funciones
+   escritas en C. Considerar el siguiente ejemplo:
 
     Bloque de código C:
     ```c
@@ -167,6 +178,7 @@ En los siguientes ejercicios supondremos siempre una arquitectura de 64 bits con
     return x;
     }
     ```
+
     Implementación en código assembly:
     ```
     long_to_long:
@@ -181,35 +193,35 @@ En los siguientes ejercicios supondremos siempre una arquitectura de 64 bits con
         return x;
     }
     ```
-    
+
     2.
     ```c
     long short_to_long(short x) {
         return x;
     }
     ```
-    
+
     3.
     ```c
     long schar_to_long(signed char x) {
         return x;
     }
     ```
-    
+
     4.
     ```c
     long ushort_to_long(unsigned short x) {
         return x;
     }
     ```
-    
+
     5.
     ```c
     long uchar_to_long(unsigned char x) {
         return x;
     }
     ```
-    
+
     6.
     ```c
     long unsigned_to_long(unsigned x) {
