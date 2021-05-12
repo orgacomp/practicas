@@ -5,7 +5,8 @@
  * [git](#git)
  * [docker](#docker)
  * [qemu](#qemu)
-
+ * [gcc](#gcc)
+ * [gdb](#gdb)
 
 
 <a name="git"/>
@@ -197,29 +198,44 @@ $ qemu-sparc64-static my_app_sparc
 
 ## GCC
 
-[GCC](https://www.gnu.org/software/gcc/) es el GNU C compiler. Esta herramienta nos permite
-convertir un programa en lenguaje C a un programa en lenguaje maquina. El
-proceso de conversión implica varios pasos:
+[GCC](https://www.gnu.org/software/gcc/) es el GNU C compiler. Esta herramienta
+nos permite convertir un programa en lenguaje C a un programa en lenguaje
+máquina. El proceso de conversión implica varios pasos:
 
-* Pre compilación: toma el código C y reemplaza cualquier `#include` y
-  `#define` que hayamos usado. Salida `prog.i`
+* Pre compilación: toma el código C y reemplaza cualquier `#include`,
+  `#define` y otras directivas que hayamos usado. Salida `prog.i`
 * Compilación: toma el `prog.i` y convierte las instrucciones en código C a
   instrucciones en código ASM. Salida `prog.s`
 * Assembly: toma el `prog.s` y reemplaza cada instrucción ASM por el código
-  maquina correspondiente. Salida `prog.o`
+  máquina correspondiente. Salida `prog.o`
 * Linker: en el caso que tengamos más de un `.o` se encarga de unirlos y
   generar el binario final.
+
+GCC realiza la compilación invocando a otros programas, en función de la tarea
+a realizar. En nuestro caso, invoca a:
+
+* `cpp` para preprocesar el código C
+* `cc` para compilar el código C preprocesado.
+* `as` para ensamblar el código assembly generado por `cc` (o manualmente).
+* `ld` para enlazar binarios.
 
 ### Opciones de GCC
 
 * `$ gcc -Og main.c`: compila el código utilizando el nivel de optimización
-  `g`. Existen varios niveles de optimización: `g` para que el asm sea lo mas
-  parecido al código c, `s` para que optimice espacio, `1` y `2` optimizaciones
-  de ejecución.
-* `$ gcc -E main.c`: para la compilación en la etapa del Precompilador.
-* `$ gcc -S main.c`: para la compilación en la etapa del Compilador.
-* `$ gcc -c main.c`: para la compilación en la etapa del Assembly.
-* `$ gcc -g main.c`: agrega símbolos de debbuging al binario final.
+  `g`. Existen varios niveles de optimización:
+
+   * `g` para que el asm sea lo más parecido al código c,
+   * `s` para que optimice espacio,
+   * `1`, `2` y `3` son optimizaciones de ejecución,
+   * `fast` para que optimice en velocidad.
+
+* `$ gcc -E main.c`: para detener la compilación luego de la etapa del
+  Precompilador.
+* `$ gcc -S main.c`: para detener la compilación luego de la etapa del
+  Compilador.
+* `$ gcc -c main.c`: para detener la compilación luego de la etapa del
+  Assembly.
+* `$ gcc -g main.c`: agrega símbolos de debugging al binario final.
 
 
 
@@ -227,10 +243,10 @@ proceso de conversión implica varios pasos:
 
 ## GDB
 
-[GDB](https://www.gnu.org/software/gdb/) es el GNU project debugger. Esta herramienta nos permite
-ejecutar un programa paso a paso. No solo eso, sino que podemos introducir
-cambios en la ejecución, como modificar variables o ejecutar funciones, pararla
-en cualquier momento o ver el estado de la memoria.
+[GDB](https://www.gnu.org/software/gdb/) es el GNU project debugger. Esta
+herramienta nos permite ejecutar un programa paso a paso. No solo eso, sino que
+podemos introducir cambios en la ejecución, como modificar variables o ejecutar
+funciones, pararla en cualquier momento o ver el estado de la memoria.
 
 La forma de ejecutarlo para debuggear un programa *my_app*:
 
@@ -244,27 +260,28 @@ consola del programa donde podemos interactuar con el debbuger.
 
 ### Comandos de GDB
 
-* `> run`: inicia la ejecución del programa en background.
-* `> stop`: inicia la ejecución del programa en background.
-* `> break`: le indica a gdb que al pasar por cierto lugar queremos
+* `> run [args]`: inicia la ejecución del programa en background con los
+  argumentos `[args]`.
+* `> stop`: detiente la ejecución del programa en background.
+* `> break bp`: le indica a gdb que al pasar por cierto lugar (`bp`) queremos
   que pare la ejecución. Por ejemplo `> b main` haría que al entrar en la
-  función *main* pare la ejecución.
-* `> next`: una vez parada la ejecución podemos ir ejecutando linea a linea.
-* `> step`: next no entra dentro de funciones. Usamos step.
+  función *main* pare la ejecución y nos permita inspeccionar el estado.
+* `> next`: una vez parada la ejecución podemos ir ejecutando línea a línea.
+* `> step`: next no entra en el código de la funciones. Usamos step.
 * `> list`: imprime 10 lineas al rededor de la linea en la que se paró el
   programa.
 * `> print var_name`: imprime la variable *var_name*. Por default la imprime en
   decimal pero con parámetros podemos indicarle que imprima de otra forma. Por
   ejemplo `> print /x x` imprime la variable x en formato hexadecimal.
-* `> set var_name value`: escribe en la variable var_name el valor value.
+* `> set var_name value`: escribe en la variable var\_name el valor value.
 * `> shell sh_cmd`: podemos ejecutar comandos del shell directamente.
 * `> make`:  es un comando de shell que tiene un trato especial y puede
   invocarse directamente.
 * `> pipe gdb_cmd | sh_cmd`: podemos concatenar la salida de un comando gdb a
-  un comando de shell. Por ejemplo `> pipe p x | grep red` hace un grep sobre la
-  salida del print de la variable x. Esto puede abreviarse con el `|` en `> | p
-  x | grep red` o incluso, si queremos repetir el ultimo comando y pasarlo por
-  un grep `> | | grep red`.
+  un comando de shell. Por ejemplo `> pipe p x | grep red` hace un grep sobre
+  la salida del print de la variable x. Esto puede abreviarse con el `|` en `>
+  | p x | grep red` o incluso, si queremos repetir el último comando y pasarlo
+  por un grep `> | | grep red`.
 * `> layout`: gdb puede mostrar distintas ventanas en su interfaz ncurses. Con
   `> layout next` podemos ciclar por los predefinidos o crear nuevos.
 * `> info registers`: imprime todos los registros del cpu.
