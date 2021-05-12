@@ -135,6 +135,38 @@ En los siguientes ejercicios supondremos siempre una arquitectura de 64 bits
 con código máquina x86-64 con sintaxis AT&T (a menos que se indique lo
 contrario).
 
+1. Dada la siguiente carga de valores en memoria y registros respectivamente
+
+    | Dirección | Valor |
+    | --------- | ----- |
+    | 0x100     | 0xFF  |
+    | 0x104     | 0xAB  |
+    | 0x108     | 0x13  |
+    | 0x10C     | 0x11  |
+    | --------- | ----- |
+
+    | Registro | Valor |
+    | -------- | ----- |
+    | `%rax`   | 0x100 |
+    | `%rcx`   | 0x1   |
+    | `%rdx`   | 0x3   |
+    | -------- | ----- |
+
+    Completar con el tipo de operando y el valor equivalente de los siguientes
+    operandos:
+
+    | Operando | Tipo | Valor |
+    | -------- | ---- | ----- |
+    | `%rax` | | |
+    | `0x104` | | |
+    | `$0x108` | | |
+    | `(%rax)` | | |
+    | `4(%rax)` | | |
+    | `9(%rax, %rdx)` | | |
+    | `260(%rcx, %rdx)` | | |
+    | `0xFC(, %rcx, 4)` | | |
+    | `(%rax, %rdx, 4)` | | |
+
 1. Completar con un sufijo apropiado cada una de las siguientes instrucciones
    de código assembly.
 
@@ -146,6 +178,16 @@ contrario).
     1. `mov___ (%rax), %si`
     1. `mov___ %r8, (%rsi)`
     1. `mov___ (%rsp, %rdi, 4), %sil`
+
+1. Indicar en cada caso por que no es una instrucción válida.
+
+    1. `movb 0xF, (%ebx)`
+    1. `movl %rax, (%rsp) `
+    1. `movw (%rax), 4(%rsp)`
+    1. `movb %al, %sl`
+    1. `movq %rax, $0x123`
+    1. `movl %eax, %rdx`
+    1. `movb %si, 8(%rbp)`
 
 1. Asumiendo que las variables o y d son de los tipos *origen_t* y *dest_t*
    declarados con *typedef*, se busca implementar el siguiente movimiento:
@@ -177,6 +219,16 @@ contrario).
     1. `char` -> `unsigned`
     1. `int` -> `char`
     1. `char` -> `short`
+
+1. Indicar el valor de `%rax` para cada linea del siguiente código asm.
+    ```
+    example:
+        movabsq $0x0011223344556677, %rax
+        movb $0xaa, %dl
+        movb %dl, %al
+        movsbq %dl, %rax
+        movzbq %dl, %rax
+    ```
 
 1. Proveer la implementación en código assembly de las siguientes funciones
    escritas en C. Considerar el siguiente ejemplo:
@@ -237,3 +289,41 @@ contrario).
         return x;
     }
     ```
+
+1. Dado el siguiente código asm escribir una función en C que se compile a lo
+   mismo.
+
+   > Hint: utilizar GCC para corroborar el resultado.
+
+   ```
+   decode1:
+       movq (%rdi), %r8
+       movq (%rsi), %rcx
+       movq (%rdx), %rax
+       movq %r8, (%rsi)
+       movq %rcx, (%rdx)
+       movq %rax, (%rdi)
+       ret
+    ```
+
+   El prototipo de la función debe ser:
+   ```C
+   void decode1(long *xp, long *yp, long *zp)
+   ```
+   Se debe suponer ademas que el primer operando se guarda en `%rdi`, el
+   segundo en `%rsi` y el ultimo en `%rdx`.
+
+1. Indicar con que instrucción asm se pueden reemplazar los siguiente códigos
+   en asm.
+
+   1.
+   ```
+   subq $8, %rsp
+   movq %rbp, (%rsp)
+   ```
+
+   1.
+   ```
+   movq (%rsp), %rax
+   addq $8, %rsp
+   ```
