@@ -104,7 +104,7 @@ En esta sección se supone siempre una arquitectura de 64 bits.
           char c;               char c;
       } c;                  } __attribute__ ((packed)) c_packed;
       ```
-    
+
       1. sizeof( c):
       1. offsetof(c, v):
       1. offsetof(c, x):
@@ -242,14 +242,16 @@ contrario).
 
     *dp = (dest_t) *sp;
     ```
-    
-    Escribir las instrucciones de código assembly apropiadas para realizar los movimientos de datos indicados con formato: origen_t -> dest_t.
-    Asumir que el valor de op está almacenado en %rdi y el valor de dp en %rsi.
-    La primera instrucción debe leer memoria, realizar la conversión correcta y setear la porción apropiada de %rax.
-    La segunda debe escribir la porción de %rax seteada en memoria.
-  
-    Ejemplo: long -> long:  
-  
+
+    Escribir las instrucciones de código assembly apropiadas para realizar los
+    movimientos de datos indicados con formato origen_t -> dest_t.
+
+    La primera instrucción debe leer memoria, realizar la conversión apropiada
+    y setear la porción apropiada de %rax y la segunda debe escribir la porción
+    de %rax seteada en memoria.
+
+    Ejemplo: long -> long:
+
     ```
     movq (%rdi), %rax
     movq %rax, (%rsi)
