@@ -161,7 +161,7 @@ En los siguientes ejercicios supondremos siempre una arquitectura de 64 bits con
 
 1. Proveer la implementación en código assembly de las siguientes funciones escritas en C.
 
-    Ejemplo:  
+    Ejemplo  
     
     Bloque de código C:
     ```c
