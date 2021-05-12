@@ -280,7 +280,7 @@ contrario).
     Bloque de código C:
     ```c
     long long_to_long(long x) {
-    return x;
+        return x;
     }
     ```
 
