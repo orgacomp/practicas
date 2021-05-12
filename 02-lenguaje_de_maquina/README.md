@@ -151,8 +151,9 @@ En esta sección se supone siempre una arquitectura de 64 bits.
     > Hint: investigar la librería *stddef.h*.
 
 
-1. Probar los programas que se generan con el siguiente código C en
-   arquitecturas x86-64 y SPARC y analizar el resultado.
+1. Probar el programa que se genera con el siguiente código C (y si se tiene
+   acceso a una arquitectura SPARC o ARM, probarlo también en dichas
+   arquitecturas) y analizar su resultado.
 
    ```c
    #include <stdio.h>
@@ -167,6 +168,16 @@ En esta sección se supone siempre una arquitectura de 64 bits.
        character ex[2] = {{0x35, 100}, {0xaf, 127}};
        int *php_0 = &ex[0].hp;
        int *php_1 = &ex[1].hp;
+
+   #if defined(__GNUC__)
+   # if defined(__i386__)
+           /* Enable Alignment Checking on x86 */
+           __asm__("pushf\norl $0x40000,(%esp)\npopf");
+   # elif defined(__x86_64__)
+            /* Enable Alignment Checking on x86_64 */
+           __asm__("pushf\norl $0x40000,(%rsp)\npopf");
+   # endif
+   #endif
 
        printf("sizeof(character) = %lu\n", sizeof(character));
        printf("offsetof(character, role) = %lu\n", offsetof(character, role));
