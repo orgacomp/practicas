@@ -190,3 +190,51 @@ arquitectura sparc de 64bits usaríamos:
 ```bash
 $ qemu-sparc64-static my_app_sparc
 ```
+
+
+
+<a name="GDB"/>
+
+## GDB
+
+[GDB](https://www.gnu.org/software/gdb/) es el GNU project debugger. Esta herramienta nos permite
+ejecutar un programa paso a paso. No solo eso, sino que podemos introducir
+cambios en la ejecución, como modificar variables o ejecutar funciones, pararla
+en cualquier momento o ver el estado de la memoria.
+
+La forma de ejecutarlo para debuggear un programa *my_app*:
+
+```bash
+$ gdb my_app 
+```
+
+Para que este comando sea útil debemos previamente haber compilado el programa
+con opciones de debug (`gcc -g`). Una vez ejecutado *gdb* tendremos acceso a la
+consola del programa donde podemos interactuar con el debbuger.
+
+### Comandos de GDB
+
+* `> run`: inicia la ejecución del programa en background.
+* `> stop`: inicia la ejecución del programa en background.
+* `> break`: le indica a gdb que al pasar por cierto lugar queremos
+  que pare la ejecución. Por ejemplo `> b main` haría que al entrar en la
+  función *main* pare la ejecución.
+* `> next`: una vez parada la ejecución podemos ir ejecutando linea a linea.
+* `> step`: next no entra dentro de funciones. Usamos step.
+* `> list`: imprime 10 lineas al rededor de la linea en la que se paró el
+  programa.
+* `> print var_name`: imprime la variable *var_name*. Por default la imprime en
+  decimal pero con parámetros podemos indicarle que imprima de otra forma. Por
+  ejemplo `> print /x x` imprime la variable x en formato hexadecimal.
+* `> set var_name value`: escribe en la variable var_name el valor value.
+* `> shell sh_cmd`: podemos ejecutar comandos del shell directamente.
+* `> make`:  es un comando de shell que tiene un trato especial y puede
+  invocarse directamente.
+* `> pipe gdb_cmd | sh_cmd`: podemos concatenar la salida de un comando gdb a
+  un comando de shell. Por ejemplo `> pipe p x | grep red` hace un grep sobre la
+  salida del print de la variable x. Esto puede abreviarse con el `|` en `> | p
+  x | grep red` o incluso, si queremos repetir el ultimo comando y pasarlo por
+  un grep `> | | grep red`.
+* `> layout`: gdb puede mostrar distintas ventanas en su interfaz ncurses. Con
+  `> layout next` podemos ciclar por los predefinidos o crear nuevos.
+* `> info registers`: imprime todos los registros del cpu.
