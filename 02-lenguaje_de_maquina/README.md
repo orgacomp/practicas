@@ -527,3 +527,99 @@ contrario).
            popq    %rbx
            ret
    ```
+
+1. Dado el siguiente código C, calcular el tamaño de la estructura `digimon_t`
+   y del arreglo `party` tanto _packed_ como con requerimientos de
+   alineamiento e implementar la función `attacks()`.
+
+    ```c
+    typedef uint64_t (*digiattack_t) (struct digimon *, struct digimon *);
+
+    typedef struct digimon {
+        uint32_t id;
+        uint8_t type;
+        uint16_t attributes;
+        uint32_t family;
+        digiattack_t * attacks;
+        uint16_t hp;
+        uint32_t ep;
+        uint8_t lvl;
+    } digimon_t;
+
+    digimon_t party[4];
+
+    uint64_t attacks(void) {
+        uint64_t total = 0;
+
+        for (size_t i = 0; i < sizeof party / sizeof *party; i++ ) {
+            total += party[i].attacks[i](enemy_party, party);
+        }
+
+        return total;
+    }
+    ```
+
+1. A partir de la versión completa del siguiente código C, se obtuvo el código
+   assembly que le sigue. Analizando el código assembly, completar el código C
+   de forma tal que al compilar se obtenga el mismo código assembly. ¿Cuánto
+   valen las constantes `FILAS` y `COLUMNAS`?.
+
+    ```c
+    int mglobal[FILAS][COLUMNAS];
+
+    long int funcion(size_t f, size_t c, int * v) {
+        size_t i, j;
+        *v = ____________;
+        for (i = ____________; ____________; ____________) {
+            mglobal[i][i] = ____________;
+            for (j = ____________; ____________; ____________) {
+                mglobal[i][i] += ____________;
+            }
+            *v += ____________;
+        }
+        return (*v > sizeof(mglobal)) ? ____________ : -1;
+    }
+    ```
+
+    ```nasm
+    funcion:
+        movl    $0, %r8d
+        movl    $-7, (%rdx)
+        jmp .L2
+    .L5:
+        leaq    (%r8,%r8,2), %rax
+        salq    $5, %rax
+        movl    $-1, mglobal(%rax)
+        leaq    1(%r8), %r11
+        movq    %r11, %r9
+        jmp .L3
+    .L4:
+        leaq    (%r8,%r8), %rax
+        leaq    (%rax,%r8), %rcx
+        salq    $3, %rcx
+        subq    %r8, %rcx
+        addq    %r9, %rcx
+        addq    %r8, %rax
+        salq    $5, %rax
+        movl    mglobal(%rax), %r10d
+        addl    mglobal(,%rcx,4), %r10d
+        movl    %r10d, mglobal(%rax)
+        addq    $1, %r9
+    .L3:
+        cmpq    %rsi, %r9
+        jb  .L4
+        leaq    (%r8,%r8,2), %rax
+        salq    $5, %rax
+        movl    mglobal(%rax), %eax
+        addl    %eax, (%rdx)
+        movq    %r11, %r8
+    .L2:
+        cmpq    %rdi, %r8
+        jb  .L5
+        movl    (%rdx), %edx
+        movslq  %edx, %rax
+        cmpl    $1289, %edx
+        movq    $-1, %rdx
+        cmovb   %rdx, %rax
+        ret
+    ```
