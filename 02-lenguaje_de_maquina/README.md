@@ -323,8 +323,9 @@ contrario).
     }
     ```
 
-1. Asumiendo que las variables op y dp son de los tipos *origen_t* y *dest_t*
-   declarados con *typedef*, se busca implementar el siguiente movimiento:
+1. Dadas que las variables op y dp, de los tipos *origen_t* y *dest_t*,
+   respectivamente, declarados con *typedef*, se busca implementar el siguiente
+   movimiento:
 
     ```c
     origen_t *op;
@@ -335,10 +336,11 @@ contrario).
 
     Escribir las instrucciones de código assembly apropiadas para realizar los
     movimientos de datos indicados con formato origen_t -> dest_t.
-    
-    Asumir que los valores de op y dp están almacenados en %rdi y %rsi respectivamente.
 
-    La primera instrucción debe leer memoria, realizar la conversión apropiada
+    Suponer que los valores de op y dp están almacenados en %rdi y %rsi
+    respectivamente.
+
+    La primera instrucción debe leer memoria, realizar la conversión correcta
     y setear la porción apropiada de %rax y la segunda debe escribir la porción
     de %rax seteada en memoria.
 
