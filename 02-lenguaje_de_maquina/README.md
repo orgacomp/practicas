@@ -359,7 +359,7 @@ contrario).
     1. `char` -> `short`
 
 1. Indicar el valor de `%rax` para cada linea del siguiente código asm.
-    ```
+    ```nasm
     example:
         movabsq $0x0011223344556677, %rax
         movb $0xaa, %dl
@@ -373,7 +373,7 @@ contrario).
 
    > Hint: utilizar GCC para corroborar el resultado.
 
-   ```
+   ```nasm
    decode1:
        movq (%rdi), %r8
        movq (%rsi), %rcx
@@ -395,13 +395,13 @@ contrario).
    en asm.
 
    1.
-   ```
+   ```nasm
    subq $8, %rsp
    movq %rbp, (%rsp)
    ```
 
    1.
-   ```
+   ```nasm
    movq (%rsp), %rax
    addq $8, %rsp
    ```
@@ -475,88 +475,88 @@ contrario).
 
 1. El código assembly de la siguiente función posee bugs que llevan a un
    incorrecto funcionamiento ¿cuáles son, por qué y cómo se subsanan?.
-   ```c
-    1: typedef struct element {
-    2:     char id[4];
-    3:     union {
-    4:         double d;
-    5:         unsigned char b[8];
-    6:     } ;
-    7: } element_t;
-    8:
-    9: typedef struct nodo {
-   10:     struct element * dato;
-   11:     struct nodo * siguiente;
-   12: } * lista_t;
-   13:
-   14: extern void funcion(struct element *);
-   15:
-   16: element_t * lista_buscar(lista_t lista, const char * id) {
-   17:     for (struct nodo * nodo = lista; nodo; nodo = nodo->siguiente) {
-   18:         if(!strcmp(lista->dato->id, id))
-   19:             return lista->dato;
-   20:     }
-   21:     return NULL;
-   22: }
-   ```
-   ```nasm
-   lista_buscar:
-           pushq   %rbp
-           pushq   %rbx
-           addq    $8, %rsp
-           movq    %rdi, %r12
-           movq    %rsi, %r13
-           movq    %rdi, %rbx
-   .L7:
-           testq   %rbx, %rbx
-           je      .L6
-           leaq    (%r12), %rbp
-           movq    %r13, %rsi
-           movq    %rbp, %rdi
-           call    strcmp
-           testq   %eax, %eax
-           je      .L10
-           movq    8(%rbx), %rbx
-           jmp     .L7
-   .L10:
-           movq    %rbp, %rbx
-   .L6:
-           movq    %rbx, %rax
-           subq    $8, %rsp
-           popq    %rbp
-           popq    %rbx
-           ret
-   ```
+    ```c
+     1: typedef struct element {
+     2:     char id[4];
+     3:     union {
+     4:         double d;
+     5:         unsigned char b[8];
+     6:     } ;
+     7: } element_t;
+     8:
+     9: typedef struct nodo {
+    10:     struct element * dato;
+    11:     struct nodo * siguiente;
+    12: } * lista_t;
+    13:
+    14: extern void funcion(struct element *);
+    15:
+    16: element_t * lista_buscar(lista_t lista, const char * id) {
+    17:     for (struct nodo * nodo = lista; nodo; nodo = nodo->siguiente) {
+    18:         if(!strcmp(lista->dato->id, id))
+    19:             return lista->dato;
+    20:     }
+    21:     return NULL;
+    22: }
+    ```
+    ```nasm
+     1: lista_buscar:
+     2:         pushq   %rbp
+     3:         pushq   %rbx
+     4:         addq    $8, %rsp
+     5:         movq    %rdi, %r12
+     6:         movq    %rsi, %r13
+     7:         movq    %rdi, %rbx
+     8: .L7:
+     9:         testq   %rbx, %rbx
+    10:         je      .L6
+    11:         leaq    (%r12), %rbp
+    12:         movq    %r13, %rsi
+    13:         movq    %rbp, %rdi
+    14:         call    strcmp
+    15:         testq   %eax, %eax
+    16:         je      .L10
+    17:         movq    8(%rbx), %rbx
+    18:         jmp     .L7
+    19: .L10:
+    20:         movq    %rbp, %rbx
+    21: .L6:
+    22:         movq    %rbx, %rax
+    23:         subq    $8, %rsp
+    24:         popq    %rbp
+    25:         popq    %rbx
+    26:         ret
+    ```
 
 1. Dado el siguiente código C, calcular el tamaño de la estructura `digimon_t`
    y del arreglo `party` tanto _packed_ como con requerimientos de
    alineamiento e implementar la función `attacks()`.
 
     ```c
-    typedef uint64_t (*digiattack_t) (struct digimon *, struct digimon *);
-
-    typedef struct digimon {
-        uint32_t id;
-        uint8_t type;
-        uint16_t attributes;
-        uint32_t family;
-        digiattack_t * attacks;
-        uint16_t hp;
-        uint32_t ep;
-        uint8_t lvl;
-    } digimon_t;
-
-    digimon_t party[4];
-
-    uint64_t attacks(void) {
-        uint64_t total = 0;
-
-        for (size_t i = 0; i < sizeof party / sizeof *party; i++ ) {
-            total += party[i].attacks[i](enemy_party, party);
-        }
-
-        return total;
-    }
+     1: typedef uint64_t (*digiattack_t) (struct digimon *, struct digimon *);
+     2:
+     3: typedef struct digimon {
+     4:     uint32_t id;
+     5:     uint8_t type;
+     6:     uint16_t attributes;
+     7:     uint32_t family;
+     8:     digiattack_t * attacks;
+     9:     uint16_t hp;
+    10:     uint32_t ep;
+    11:     uint8_t lvl;
+    12: } digimon_t;
+    13:
+    14: digimon_t party[4];
+    15:
+    16: uint64_t attacks(void) {
+    17:     uint64_t total = 0;
+    18:
+    19:     for (size_t i = 0; i < sizeof party / sizeof *party; i++ ) {
+    20:         total += party[i].attacks[i](enemy_party, party);
+    21:     }
+    22:
+    23:     return total;
+    24: }
     ```
 
 1. A partir de la versión completa del siguiente código C, se obtuvo el código
@@ -565,61 +565,61 @@ contrario).
    valen las constantes `FILAS` y `COLUMNAS`?.
 
     ```c
-    int mglobal[FILAS][COLUMNAS];
-
-    long int funcion(size_t f, size_t c, int * v) {
-        size_t i, j;
-        *v = ____________;
-        for (i = ____________; ____________; ____________) {
-            mglobal[i][i] = ____________;
-            for (j = ____________; ____________; ____________) {
-                mglobal[i][i] += ____________;
-            }
-            *v += ____________;
-        }
-        return (*v > sizeof(mglobal)) ? ____________ : -1;
-    }
+     1: int mglobal[FILAS][COLUMNAS];
+     2:
+     3: long int funcion(size_t f, size_t c, int * v) {
+     4:     size_t i, j;
+     5:     *v = ____________;
+     6:     for (i = ____________; ____________; ____________) {
+     7:         mglobal[i][i] = ____________;
+     8:         for (j = ____________; ____________; ____________) {
+     9:             mglobal[i][i] += ____________;
+    10:         }
+    11:         *v += ____________;
+    12:     }
+    13:     return (*v > sizeof(mglobal)) ? ____________ : -1;
+    14: }
     ```
 
     ```nasm
-    funcion:
-        movl    $0, %r8d
-        movl    $-7, (%rdx)
-        jmp .L2
-    .L5:
-        leaq    (%r8,%r8,2), %rax
-        salq    $5, %rax
-        movl    $-1, mglobal(%rax)
-        leaq    1(%r8), %r11
-        movq    %r11, %r9
-        jmp .L3
-    .L4:
-        leaq    (%r8,%r8), %rax
-        leaq    (%rax,%r8), %rcx
-        salq    $3, %rcx
-        subq    %r8, %rcx
-        addq    %r9, %rcx
-        addq    %r8, %rax
-        salq    $5, %rax
-        movl    mglobal(%rax), %r10d
-        addl    mglobal(,%rcx,4), %r10d
-        movl    %r10d, mglobal(%rax)
-        addq    $1, %r9
-    .L3:
-        cmpq    %rsi, %r9
-        jb  .L4
-        leaq    (%r8,%r8,2), %rax
-        salq    $5, %rax
-        movl    mglobal(%rax), %eax
-        addl    %eax, (%rdx)
-        movq    %r11, %r8
-    .L2:
-        cmpq    %rdi, %r8
-        jb  .L5
-        movl    (%rdx), %edx
-        movslq  %edx, %rax
-        cmpl    $1289, %edx
-        movq    $-1, %rdx
-        cmovb   %rdx, %rax
-        ret
+     1: funcion:
+     2:     movl    $0, %r8d
+     3:     movl    $-7, (%rdx)
+     4:     jmp .L2
+     5: .L5:
+     6:     leaq    (%r8,%r8,2), %rax
+     7:     salq    $5, %rax
+     8:     movl    $-1, mglobal(%rax)
+     9:     leaq    1(%r8), %r11
+    10:     movq    %r11, %r9
+    11:     jmp .L3
+    12: .L4:
+    13:     leaq    (%r8,%r8), %rax
+    14:     leaq    (%rax,%r8), %rcx
+    15:     salq    $3, %rcx
+    16:     subq    %r8, %rcx
+    17:     addq    %r9, %rcx
+    18:     addq    %r8, %rax
+    19:     salq    $5, %rax
+    20:     movl    mglobal(%rax), %r10d
+    21:     addl    mglobal(,%rcx,4), %r10d
+    22:     movl    %r10d, mglobal(%rax)
+    23:     addq    $1, %r9
+    24: .L3:
+    25:     cmpq    %rsi, %r9
+    26:     jb  .L4
+    27:     leaq    (%r8,%r8,2), %rax
+    28:     salq    $5, %rax
+    29:     movl    mglobal(%rax), %eax
+    30:     addl    %eax, (%rdx)
+    31:     movq    %r11, %r8
+    32: .L2:
+    33:     cmpq    %rdi, %r8
+    34:     jb  .L5
+    35:     movl    (%rdx), %edx
+    36:     movslq  %edx, %rax
+    37:     cmpl    $1289, %edx
+    38:     movq    $-1, %rdx
+    39:     cmovb   %rdx, %rax
+    40:     ret
     ```
