@@ -405,3 +405,24 @@ contrario).
    movq (%rsp), %rax
    addq $8, %rsp
    ```
+
+1. Implementar las funciones `strchr()` y `strrchr()` en lenguaje ensamblador.
+   Una de ellas en x86 (32 bits), la otra en x86-64 (64 bits).
+
+   Escribir una porción de código en lenguaje ensamblador donde se invoque,
+   correctamente, a cada función implementada.
+
+    ```
+    char *strchr(const char *s, int c);
+    char *strrchr(const char *s, int c);
+
+    La función strchr() retorna un puntero a la primera ocurrencia del
+        caracter c en la cadena s.
+    La función strrchr() retorna un puntero a la última ocurrencia del
+        caracter c en la cadena s.
+
+    Las funciones strchr() y strrchr() retornan un puntero al caracter o
+    NULL si el caracter no se encuentra. El byte nulo que termina la cadena
+    es considerado parte de la misma, si c es especificado como '\0', estas
+    funciones retornan un puntero al terminador.
+    ```
