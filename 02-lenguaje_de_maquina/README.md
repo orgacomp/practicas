@@ -426,3 +426,49 @@ contrario).
     es considerado parte de la misma, si c es especificado como '\0', estas
     funciones retornan un puntero al terminador.
     ```
+
+1. Recuperar la definición de una estructura desconocida sabiendo que la misma
+   es pasada como argumento (como puntero) en cada una de las siguientes
+   funciones assembly.
+
+    ```nasm
+    _f1:
+            movl    4(%rdi), %eax
+            ret
+    _f2:
+            leaq    8(%rdi), %rax
+            ret
+    _f3:
+            movsbq  40(%rdi), %rax
+            cmpq    %rax, 32(%rdi)
+            setb    %al
+            ret
+    _f4:
+            movl    $0, %edx
+            movl    $0, %eax
+            jmp .L5
+    .L6:
+            movswl  8(%rdi,%rdx,2), %ecx
+            addl    %ecx, %eax
+            addq    $1, %rdx
+    .L5:
+            cmpq    $6, %rdx
+            jbe .L6
+            rep ret
+    _f5:
+            movsbw  (%rdi), %ax
+            ret
+    _f6:
+            leaq    24(%rdi), %rax
+            ret
+    _f7:
+            movl    $48, %eax
+            ret
+    _f8:
+            movsd   24(%rdi), %xmm0
+            addsd   %xmm0, %xmm0
+            ret
+    _f9:
+            movzwl  42(%rdi,%rsi,2), %eax
+            ret
+    ```
