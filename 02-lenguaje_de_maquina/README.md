@@ -472,3 +472,58 @@ contrario).
             movzwl  42(%rdi,%rsi,2), %eax
             ret
     ```
+
+1. El código assembly de la siguiente función posee bugs que llevan a un
+   incorrecto funcionamiento ¿cuáles son, por qué y cómo se subsanan?.
+   ```c
+    1: typedef struct element {
+    2:     char id[4];
+    3:     union {
+    4:         double d;
+    5:         unsigned char b[8];
+    6:     } ;
+    7: } element_t;
+    8:
+    9: typedef struct nodo {
+   10:     struct element * dato;
+   11:     struct nodo * siguiente;
+   12: } * lista_t;
+   13:
+   14: extern void funcion(struct element *);
+   15:
+   16: element_t * lista_buscar(lista_t lista, const char * id) {
+   17:     for (struct nodo * nodo = lista; nodo; nodo = nodo->siguiente) {
+   18:         if(!strcmp(lista->dato->id, id))
+   19:             return lista->dato;
+   20:     }
+   21:     return NULL;
+   22: }
+   ```
+   ```nasm
+   lista_buscar:
+           pushq   %rbp
+           pushq   %rbx
+           addq    $8, %rsp
+           movq    %rdi, %r12
+           movq    %rsi, %r13
+           movq    %rdi, %rbx
+   .L7:
+           testq   %rbx, %rbx
+           je      .L6
+           leaq    (%r12), %rbp
+           movq    %r13, %rsi
+           movq    %rbp, %rdi
+           call    strcmp
+           testq   %eax, %eax
+           je      .L10
+           movq    8(%rbx), %rbx
+           jmp     .L7
+   .L10:
+           movq    %rbp, %rbx
+   .L6:
+           movq    %rbx, %rax
+           subq    $8, %rsp
+           popq    %rbp
+           popq    %rbx
+           ret
+   ```
