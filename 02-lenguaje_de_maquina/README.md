@@ -323,8 +323,9 @@ contrario).
     }
     ```
 
-1. Asumiendo que las variables op y dp son de los tipos *origen_t* y *dest_t*
-   declarados con *typedef*, se busca implementar el siguiente movimiento:
+1. Dadas que las variables op y dp, de los tipos *origen_t* y *dest_t*,
+   respectivamente, declarados con *typedef*, se busca implementar el siguiente
+   movimiento:
 
     ```c
     origen_t *op;
@@ -335,10 +336,11 @@ contrario).
 
     Escribir las instrucciones de código assembly apropiadas para realizar los
     movimientos de datos indicados con formato origen_t -> dest_t.
-    
-    Asumir que los valores de op y dp están almacenados en %rdi y %rsi respectivamente.
 
-    La primera instrucción debe leer memoria, realizar la conversión apropiada
+    Suponer que los valores de op y dp están almacenados en %rdi y %rsi
+    respectivamente.
+
+    La primera instrucción debe leer memoria, realizar la conversión correcta
     y setear la porción apropiada de %rax y la segunda debe escribir la porción
     de %rax seteada en memoria.
 
@@ -357,7 +359,7 @@ contrario).
     1. `char` -> `short`
 
 1. Indicar el valor de `%rax` para cada linea del siguiente código asm.
-    ```
+    ```nasm
     example:
         movabsq $0x0011223344556677, %rax
         movb $0xaa, %dl
@@ -371,7 +373,7 @@ contrario).
 
    > Hint: utilizar GCC para corroborar el resultado.
 
-   ```
+   ```nasm
    decode1:
        movq (%rdi), %r8
        movq (%rsi), %rcx
@@ -393,13 +395,231 @@ contrario).
    en asm.
 
    1.
-   ```
+   ```nasm
    subq $8, %rsp
    movq %rbp, (%rsp)
    ```
 
    1.
-   ```
+   ```nasm
    movq (%rsp), %rax
    addq $8, %rsp
    ```
+
+1. Implementar las funciones `strchr()` y `strrchr()` en lenguaje ensamblador.
+   Una de ellas en x86 (32 bits), la otra en x86-64 (64 bits).
+
+   Escribir una porción de código en lenguaje ensamblador donde se invoque,
+   correctamente, a cada función implementada.
+
+    ```
+    char *strchr(const char *s, int c);
+    char *strrchr(const char *s, int c);
+
+    La función strchr() retorna un puntero a la primera ocurrencia del
+        caracter c en la cadena s.
+    La función strrchr() retorna un puntero a la última ocurrencia del
+        caracter c en la cadena s.
+
+    Las funciones strchr() y strrchr() retornan un puntero al caracter o
+    NULL si el caracter no se encuentra. El byte nulo que termina la cadena
+    es considerado parte de la misma, si c es especificado como '\0', estas
+    funciones retornan un puntero al terminador.
+    ```
+
+1. Recuperar la definición de una estructura desconocida sabiendo que la misma
+   es pasada como argumento (como puntero) en cada una de las siguientes
+   funciones assembly.
+
+    ```nasm
+    _f1:
+            movl    4(%rdi), %eax
+            ret
+    _f2:
+            leaq    8(%rdi), %rax
+            ret
+    _f3:
+            movsbq  40(%rdi), %rax
+            cmpq    %rax, 32(%rdi)
+            setb    %al
+            ret
+    _f4:
+            movl    $0, %edx
+            movl    $0, %eax
+            jmp .L5
+    .L6:
+            movswl  8(%rdi,%rdx,2), %ecx
+            addl    %ecx, %eax
+            addq    $1, %rdx
+    .L5:
+            cmpq    $6, %rdx
+            jbe .L6
+            rep ret
+    _f5:
+            movsbw  (%rdi), %ax
+            ret
+    _f6:
+            leaq    24(%rdi), %rax
+            ret
+    _f7:
+            movl    $48, %eax
+            ret
+    _f8:
+            movsd   24(%rdi), %xmm0
+            addsd   %xmm0, %xmm0
+            ret
+    _f9:
+            movzwl  42(%rdi,%rsi,2), %eax
+            ret
+    ```
+
+1. El código assembly de la siguiente función posee bugs que llevan a un
+   incorrecto funcionamiento ¿cuáles son, por qué y cómo se subsanan?.
+    ```c
+     1: typedef struct element {
+     2:     char id[4];
+     3:     union {
+     4:         double d;
+     5:         unsigned char b[8];
+     6:     } ;
+     7: } element_t;
+     8:
+     9: typedef struct nodo {
+    10:     struct element * dato;
+    11:     struct nodo * siguiente;
+    12: } * lista_t;
+    13:
+    14: extern void funcion(struct element *);
+    15:
+    16: element_t * lista_buscar(lista_t lista, const char * id) {
+    17:     for (struct nodo * nodo = lista; nodo; nodo = nodo->siguiente) {
+    18:         if(!strcmp(lista->dato->id, id))
+    19:             return lista->dato;
+    20:     }
+    21:     return NULL;
+    22: }
+    ```
+    ```nasm
+     1: lista_buscar:
+     2:         pushq   %rbp
+     3:         pushq   %rbx
+     4:         addq    $8, %rsp
+     5:         movq    %rdi, %r12
+     6:         movq    %rsi, %r13
+     7:         movq    %rdi, %rbx
+     8: .L7:
+     9:         testq   %rbx, %rbx
+    10:         je      .L6
+    11:         leaq    (%r12), %rbp
+    12:         movq    %r13, %rsi
+    13:         movq    %rbp, %rdi
+    14:         call    strcmp
+    15:         testq   %eax, %eax
+    16:         je      .L10
+    17:         movq    8(%rbx), %rbx
+    18:         jmp     .L7
+    19: .L10:
+    20:         movq    %rbp, %rbx
+    21: .L6:
+    22:         movq    %rbx, %rax
+    23:         subq    $8, %rsp
+    24:         popq    %rbp
+    25:         popq    %rbx
+    26:         ret
+    ```
+
+1. Dado el siguiente código C, calcular el tamaño de la estructura `digimon_t`
+   y del arreglo `party` tanto _packed_ como con requerimientos de
+   alineamiento e implementar la función `attacks()`.
+
+    ```c
+     1: typedef uint64_t (*digiattack_t) (struct digimon *, struct digimon *);
+     2:
+     3: typedef struct digimon {
+     4:     uint32_t id;
+     5:     uint8_t type;
+     6:     uint16_t attributes;
+     7:     uint32_t family;
+     8:     digiattack_t * attacks;
+     9:     uint16_t hp;
+    10:     uint32_t ep;
+    11:     uint8_t lvl;
+    12: } digimon_t;
+    13:
+    14: digimon_t party[4];
+    15:
+    16: uint64_t attacks(void) {
+    17:     uint64_t total = 0;
+    18:
+    19:     for (size_t i = 0; i < sizeof party / sizeof *party; i++ ) {
+    20:         total += party[i].attacks[i](enemy_party, party);
+    21:     }
+    22:
+    23:     return total;
+    24: }
+    ```
+
+1. A partir de la versión completa del siguiente código C, se obtuvo el código
+   assembly que le sigue. Analizando el código assembly, completar el código C
+   de forma tal que al compilar se obtenga el mismo código assembly. ¿Cuánto
+   valen las constantes `FILAS` y `COLUMNAS`?.
+
+    ```c
+     1: int mglobal[FILAS][COLUMNAS];
+     2:
+     3: long int funcion(size_t f, size_t c, int * v) {
+     4:     size_t i, j;
+     5:     *v = ____________;
+     6:     for (i = ____________; ____________; ____________) {
+     7:         mglobal[i][i] = ____________;
+     8:         for (j = ____________; ____________; ____________) {
+     9:             mglobal[i][i] += ____________;
+    10:         }
+    11:         *v += ____________;
+    12:     }
+    13:     return (*v > sizeof(mglobal)) ? ____________ : -1;
+    14: }
+    ```
+
+    ```nasm
+     1: funcion:
+     2:     movl    $0, %r8d
+     3:     movl    $-7, (%rdx)
+     4:     jmp .L2
+     5: .L5:
+     6:     leaq    (%r8,%r8,2), %rax
+     7:     salq    $5, %rax
+     8:     movl    $-1, mglobal(%rax)
+     9:     leaq    1(%r8), %r11
+    10:     movq    %r11, %r9
+    11:     jmp .L3
+    12: .L4:
+    13:     leaq    (%r8,%r8), %rax
+    14:     leaq    (%rax,%r8), %rcx
+    15:     salq    $3, %rcx
+    16:     subq    %r8, %rcx
+    17:     addq    %r9, %rcx
+    18:     addq    %r8, %rax
+    19:     salq    $5, %rax
+    20:     movl    mglobal(%rax), %r10d
+    21:     addl    mglobal(,%rcx,4), %r10d
+    22:     movl    %r10d, mglobal(%rax)
+    23:     addq    $1, %r9
+    24: .L3:
+    25:     cmpq    %rsi, %r9
+    26:     jb  .L4
+    27:     leaq    (%r8,%r8,2), %rax
+    28:     salq    $5, %rax
+    29:     movl    mglobal(%rax), %eax
+    30:     addl    %eax, (%rdx)
+    31:     movq    %r11, %r8
+    32: .L2:
+    33:     cmpq    %rdi, %r8
+    34:     jb  .L5
+    35:     movl    (%rdx), %edx
+    36:     movslq  %edx, %rax
+    37:     cmpl    $1289, %edx
+    38:     movq    $-1, %rdx
+    39:     cmovb   %rdx, %rax
+    40:     ret
+    ```
