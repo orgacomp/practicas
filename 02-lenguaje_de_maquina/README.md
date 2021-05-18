@@ -406,6 +406,55 @@ contrario).
    addq $8, %rsp
    ```
 
+1. Escribir un programa en assembler utilizando únicamente `leaq` que
+   implementa la siguiente función en C:
+
+   ```C
+   long poly(long x, long y, long z)
+   {
+       long p = 2 * x + 6 * y + 6 * z;
+       return p;
+   }
+   ```
+
+1. Dada la siguiente carga de valores en memoria y registros respectivamente
+
+    | Dirección | Valor |
+    | --------- | ----- |
+    | 0x100     | 0xFF  |
+    | 0x104     | 0xAB  |
+    | 0x110     | 0x13  |
+    | 0x118     | 0x11  |
+
+    | Registro | Valor |
+    | -------- | ----- |
+    | `%rax`   | 0x100 |
+    | `%rcx`   | 0x1   |
+    | `%rdx`   | 0x3   |
+
+   Indicar para cada linea del siguiente código asm el destino de la operación
+   (donde se guarda el resultado) y cual es el resultado de la operación.
+
+    | Código                       | Destino | Valor |
+    | ---------------------------- | ------- | ----- |
+    | `addq %rcx, (%rax)`          |         |       |
+    | `subq %rdx, 8(%rax)`         |         |       |
+    | `imulq $16, (%rax, %rdx, 8)` |         |       |
+    | `incq 16(%rax)`              |         |       |
+    | `decq %rcx`                  |         |       |
+    | `subq %rdx, %rax`            |         |       |
+
+1. Para la siguiente instrucción:
+
+    ```nasm
+    xorq %rcx, %rcx
+    ```
+
+    Indicar:
+    1. Que función realiza?
+    1. Con que otra operación puede ser reemplazada?
+    1. Por que es preferible utilizar la primera y no la segunda?
+
 1. Implementar las funciones `strchr()` y `strrchr()` en lenguaje ensamblador.
    Una de ellas en x86 (32 bits), la otra en x86-64 (64 bits).
 
