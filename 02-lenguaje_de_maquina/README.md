@@ -455,6 +455,7 @@ contrario).
     1. Con que otra operación puede ser reemplazada?
     1. Por que es preferible utilizar la primera y no la segunda?
 
+
 1. Dado el siguiente código en C, escribir el código ASM al que compila.
 
    ```C
