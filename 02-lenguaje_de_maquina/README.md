@@ -521,6 +521,28 @@ contrario).
    | `testb %dil, %dil`<br>`seta %al`| | |
    | `testl %edi, %edi`<br>`setle %al`| | |
 
+1. Indicar cual es el target de `je` indicado con `xxxxxx`.
+   1. Dado:
+        ```nasm
+        40003FA: 74 02     je xxxxxx
+        40003FC: FF D0     callq *%rax
+        ```
+   1. Dado:
+        ```nasm
+        400042F: 74 F4     je xxxxxx
+        4000431: 5D        pop %rbp
+        ```
+   1. Dado:
+        ```nasm
+        xxxxxxx: 77 02     ja 400547
+        xxxxxxx: 5D        pop %rax
+        ```
+   1. Dado:
+        ```nasm
+        40005E8: E9 73 FF FF FF    jmpq xxxxxx
+        40005EF: 90                nop
+        ```
+
 1. Implementar las funciones `strchr()` y `strrchr()` en lenguaje ensamblador.
    Una de ellas en x86 (32 bits), la otra en x86-64 (64 bits).
 
