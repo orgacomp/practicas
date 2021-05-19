@@ -438,7 +438,7 @@ contrario).
     | Código                       | Destino | Valor |
     | ---------------------------- | ------- | ----- |
     | `addq %rcx, (%rax)`          |         |       |
-    | `subq %rdx, 8(%rax)`         |         |       |
+    | `subq %rdx, 4(%rax)`         |         |       |
     | `imulq $16, (%rax, %rdx, 8)` |         |       |
     | `incq 16(%rax)`              |         |       |
     | `decq %rcx`                  |         |       |
