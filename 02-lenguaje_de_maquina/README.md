@@ -451,9 +451,9 @@ contrario).
     ```
 
     Indicar:
-    1. Que función realiza?
-    1. Con que otra operación puede ser reemplazada?
-    1. Por que es preferible utilizar la primera y no la segunda?
+    1. ¿Qué función realiza?
+    1. ¿Con qué otra operación puede ser reemplazada?
+    1. ¿Por qué es preferible utilizar la primera y no la segunda?
 
 
 1. Dado el siguiente código en C, escribir el código ASM al que compila.
@@ -695,10 +695,10 @@ contrario).
    Escribir una porción de código en lenguaje ensamblador donde se invoque,
    correctamente, a cada función implementada.
 
-    ```
+    ```c
     char *strchr(const char *s, int c);
     char *strrchr(const char *s, int c);
-
+    ```
     La función strchr() retorna un puntero a la primera ocurrencia del
         caracter c en la cadena s.
     La función strrchr() retorna un puntero a la última ocurrencia del
@@ -708,7 +708,7 @@ contrario).
     NULL si el caracter no se encuentra. El byte nulo que termina la cadena
     es considerado parte de la misma, si c es especificado como '\0', estas
     funciones retornan un puntero al terminador.
-    ```
+    
 
 1. Recuperar la definición de una estructura desconocida sabiendo que la misma
    es pasada como argumento (como puntero) en cada una de las siguientes
