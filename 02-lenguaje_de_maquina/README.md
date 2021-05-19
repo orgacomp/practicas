@@ -455,6 +455,72 @@ contrario).
     1. Con que otra operación puede ser reemplazada?
     1. Por que es preferible utilizar la primera y no la segunda?
 
+1. Dado el siguiente código en C, escribir el código ASM al que compila.
+
+   ```C
+   #include <inttypes.h>
+
+   typedef unsigned __int128 uint128_t;
+
+   void producto_unsigned(uint128_t *dest, uint64_t x, uint64_t y) {
+       *dest = x * (uint128_t) y;
+   }
+   ```
+
+   Los parámetros son dados en `%rdi`, `%rsi` y `%rdx` respectivamente.
+
+1. Dado el siguiente código en C, escribir el código ASM al que compila.
+   Indicar como cambia el código ASM si los parámetros de la función pasan a
+   ser unsigned.
+
+   ```C
+   void div_signed(long x, long y, long *qp, long *rp)
+   {
+       long q = x / y;
+       long r = x % y;
+       *qp = q;
+       *rp = r;
+   }
+   ```
+
+   Los parámetros son dados en `%rdi`, `%rsi`, `%rdx` y `%rcx` respectivamente.
+
+1. Para la siguiente función en C:
+
+   ```C
+   int comp(data_t a, data_t b){
+       return a COMP b;
+   }
+   ```
+
+   Donde COMP se define mediante `#define`. Y suponiendo que `a` se guarda en
+   `%rdi`, y `b` en `%rsi`. Completar la siguiente tabla:
+
+   | ASM | COMP | data_t |
+   | --- | ---- | ------ |
+   | `cmpl %esi, %edi`<br>`setl %al`| | |
+   | `cmpw %si, %di`<br>`setge %al`| | |
+   | `cmpb %sil, %dil`<br>`setbe %al`| | |
+   | `cmpq %rsi, %rdi`<br>`setne %al`| | |
+
+1. Para la siguiente función en C:
+
+   ```C
+   int test(data_t a, data_t b){
+       return a TEST b;
+   }
+   ```
+
+   Donde TEST se define mediante `#define`. Y suponiendo que `a` se guarda en
+   `%rdi`. Completar la siguiente tabla:
+
+   | ASM | TEST | data_t |
+   | --- | ---- | ------ |
+   | `testq %rdi, %rdi`<br>`setge %al`| | |
+   | `testw %di, %di`<br>`sete %al`| | |
+   | `testb %dil, %dil`<br>`seta %al`| | |
+   | `testl %edi, %edi`<br>`setle %al`| | |
+
 1. Implementar las funciones `strchr()` y `strrchr()` en lenguaje ensamblador.
    Una de ellas en x86 (32 bits), la otra en x86-64 (64 bits).
 
