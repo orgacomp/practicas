@@ -4,6 +4,7 @@ on:
   push:
     branches: [ datalab ]
   pull_request:
+    types: [review_requested, ready_for_review]
     branches: [ datalab ]
 
 jobs:
