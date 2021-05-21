@@ -30,5 +30,10 @@ jobs:
       uses: pamoreno/datalab-action@v1
       with:
         target: 'grade'
+    - name: Grade Comment
+      uses: peter-evans/create-or-update-comment@v1
+      with:
+        issue-number: ${{ github.event.pull_request.number }}
+        body: ${{ steps.grade.outputs.result }}
     - name: Get the output log
       run: echo "The result was ${{ steps.grade.outputs.result }}"
