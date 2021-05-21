@@ -1,0 +1,40 @@
+name: datalab-action-test
+
+on:
+  push:
+    branches: [ datalab ]
+  pull_request:
+    types: [review_requested, ready_for_review]
+    branches: [ datalab ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: datalab-test
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2
+    - name: test
+      id: test
+      uses: pamoreno/datalab-action@v1
+      with:
+        target: 'test'
+
+  grade:
+    runs-on: ubuntu-latest
+    name: datalab-grade
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2
+    - name: grade
+      id: grade
+      uses: pamoreno/datalab-action@v1
+      with:
+        target: 'grade'
+    - name: Grade Comment
+      uses: peter-evans/create-or-update-comment@v1
+      with:
+        issue-number: ${{ github.event.pull_request.number }}
+        body: ${{ steps.grade.outputs.result }}
+    - name: Get the output log
+      run: echo "The result was ${{ steps.grade.outputs.result }}"
