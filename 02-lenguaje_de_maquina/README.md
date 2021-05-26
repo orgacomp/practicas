@@ -544,6 +544,151 @@ contrario).
         40005EF: 90                nop
         ```
 
+1. Dado el siguiente código en C que compila al código asm que lo continúa.
+
+   ```C
+   void cond(short a, short *p)
+   {
+       if (a && *p > a)
+           *p = a;
+   }
+   ```
+
+   ```nasm
+   cond:
+       testq %rdi, %rdi
+       je .L1
+       cmpq %rsi, (%rdi)
+       jle .L1
+       movq %rdi, (%rsi)
+    .L1:
+       ret
+   ```
+   1. Por que en el código asm hay dos branches condicionales si en el código C
+      solo hay uno?
+   1. Escribir un código en C utilizando `goto` que tenga una mayor correlación
+      con el código asm.
+
+1. A partir de la versión completa del siguiente código C, se obtuvo el código
+   assembly que le sigue. Analizando el código assembly, completar el código C
+   de forma tal que al compilar se obtenga el mismo código assembly.
+
+   ```C
+   short test(short x, short y, short z)
+   {
+       short val = ____________;
+       if (____________)
+       {
+           if (____________)
+           {
+               val = ____________;
+           } else {
+               val = ____________;
+           }
+       } else if (____________) {
+           val = ____________;
+       }
+       return val;
+   }
+   ```
+
+   ```nasm
+   test:
+       leaq (%rdx,%rsi), %rax
+       subq %rdi, %rax
+       cmpq $5, %rdx
+       jle .L2
+       cmpq $2, %rsi
+       jle .L3
+       movq %rdi, %rax
+       idivq %rdx, %rax
+       ret
+   .L3:
+       movq %rdi, %rax
+       idivq %rsi, %rax
+       ret
+   .L2:
+       cmpq $3, %rdx
+       jge .L4
+       movq %rdx, %rax
+       idivq %rsi, %rax
+   .L4:
+       rep; ret
+   ```
+
+1. A partir de la versión completa del siguiente código C, se obtuvo el código
+   assembly que le sigue. Analizando el código assembly, completar el código C
+   de forma tal que al compilar se obtenga el mismo código assembly.
+
+   ```C
+   short test(short x, short y, short z)
+   {
+       short val = ____________;
+       if (____________)
+       {
+           if (____________)
+           {
+               val = ____________;
+           } else {
+               val = ____________;
+           }
+       } else if (____________) {
+           val = ____________;
+       }
+       return val;
+   }
+   ```
+
+   ```nasm
+   test:
+       leaq 12(%rsi), %rdx
+       testq %rdi, %rdi
+       jge .L2
+       movq %rdi, %rbx
+       imulq %rsi, %rbx
+       movq %rdi, %rdx
+       orq %rsi, %rdx
+       cmpq %rsi, %rdi
+       cmovge %rdx, %rbx
+       ret
+   .L2:
+       idivq %rsi, %rdi
+       cmpq $10, %rsi
+       cmovge %rdi, %rbx
+       ret
+   ```
+
+1. A partir de la versión completa del siguiente código C, se obtuvo el código
+   assembly que le sigue. Analizando el código assembly, completar el código C
+   de forma tal que al compilar se obtenga el mismo código assembly.
+
+   ```C
+   short loop_while(short a, short b)
+   {
+       short result = ____________;
+       while (____________)
+       {
+           result = ____________;
+           a = ____________;
+       }
+       return result;
+   }
+   ```
+
+   ```nasm
+   loop_while:
+       movl $0, %eax
+       jmp .L2
+   .L3:
+       leaq (,%rsi, %rdi), %rdx
+       addq %rdx, %rax
+       subq $1, %rdi
+   .L2:
+       cmpq %rsi, %rdi
+       jg .L3
+       ret
+   ```
+
 1. Implementar las funciones `strchr()` y `strrchr()` en lenguaje ensamblador.
    Una de ellas en x86 (32 bits), la otra en x86-64 (64 bits).
 
