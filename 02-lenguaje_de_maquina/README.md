@@ -556,11 +556,11 @@ contrario).
 
    ```nasm
    cond:
-       testq %rdi, %rdi
+       testw    %di, %di
        je .L1
-       cmpq %rsi, (%rdi)
+       cmpw     %di, (%rsi)
        jle .L1
-       movq %rdi, (%rsi)
+       movw     %di, (%rsi)
     .L1:
        ret
    ```
