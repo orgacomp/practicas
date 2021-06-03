@@ -601,26 +601,33 @@ contrario).
 
     ```nasm
     test:
-        leaq (%rdx,%rsi), %rax
-        subq %rdi, %rax
-        cmpq $5, %rdx
-        jle .L2
-        cmpq $2, %rsi
-        jle .L3
-        movq %rdi, %rax
-        idivq %rdx, %rax
-        ret
+            leal    (%rdx,%rsi), %eax
+            subl    %edi, %eax
+            cmpw    $5, %dx
+            jle    .L2
+            cmpw    $2, %si
+            jle     .L3
+            movswl  %di, %eax
+            movswl  %dx, %ecx
+            cltd
+            idivl   %ecx
+            ret
     .L3:
-        movq %rdi, %rax
-        idivq %rsi, %rax
-        ret
+            movswl  %di, %eax
+            movswl  %si, %esi
+            cltd
+            idivl   %esi
+            ret
     .L2:
-        cmpq $3, %rdx
-        jge .L4
-        movq %rdx, %rax
-        idivq %rsi, %rax
-    .L4:
-        rep; ret
+            cmpw    $2, %dx
+            jg      .L1
+            movswl  %dx, %eax
+            movswl  %si, %esi
+            cltd
+            idivl   %esi
+    .L1:
+            ret
+
     ```
 
 1. A partir de la versión completa del siguiente código C, se obtuvo el código
