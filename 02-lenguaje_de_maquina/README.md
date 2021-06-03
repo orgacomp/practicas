@@ -155,46 +155,46 @@ En esta sección se supone siempre una arquitectura de 64 bits.
    acceso a una arquitectura SPARC o ARM, probarlo también en dichas
    arquitecturas) y analizar su resultado.
 
-   ```c
-   #include <stdio.h>
-   #include <stddef.h>
+    ```c
+    #include <stdio.h>
+    #include <stddef.h>
 
-   typedef struct {
-       unsigned char role;
-       int hp;
-   } __attribute__((packed)) character;
+    typedef struct {
+        unsigned char role;
+        int hp;
+    } __attribute__((packed)) character;
 
-   int main(void) {
-       character ex[2] = {{0x35, 100}, {0xaf, 127}};
-       int *php_0 = &ex[0].hp;
-       int *php_1 = &ex[1].hp;
+    int main(void) {
+        character ex[2] = {{0x35, 100}, {0xaf, 127}};
+        int *php_0 = &ex[0].hp;
+        int *php_1 = &ex[1].hp;
 
-   #if defined(__GNUC__)
-   # if defined(__i386__)
-           /* Enable Alignment Checking on x86 */
-           __asm__("pushf\norl $0x40000,(%esp)\npopf");
-   # elif defined(__x86_64__)
-            /* Enable Alignment Checking on x86_64 */
-           __asm__("pushf\norl $0x40000,(%rsp)\npopf");
-   # endif
-   #endif
+    #if defined(__GNUC__)
+    # if defined(__i386__)
+        /* Enable Alignment Checking on x86 */
+        __asm__("pushf\norl $0x40000,(%esp)\npopf");
+    # elif defined(__x86_64__)
+         /* Enable Alignment Checking on x86_64 */
+        __asm__("pushf\norl $0x40000,(%rsp)\npopf");
+    # endif
+    #endif
 
-       printf("sizeof(character) = %lu\n", sizeof(character));
-       printf("offsetof(character, role) = %lu\n", offsetof(character, role));
-       printf("offsetof(character, hp) = %lu\n", offsetof(character, hp));
+        printf("sizeof(character) = %lu\n", sizeof(character));
+        printf("offsetof(character, role) = %lu\n", offsetof(character, role));
+        printf("offsetof(character, hp) = %lu\n", offsetof(character, hp));
 
-       printf("ex[0].hp = %d\n", ex[0].hp);
-       printf("ex[1].hp = %d\n", ex[1].hp);
+        printf("ex[0].hp = %d\n", ex[0].hp);
+        printf("ex[1].hp = %d\n", ex[1].hp);
 
-       printf("php_0 = %p\n", (void*)php_0);
-       printf("php_1 = %p\n", (void*)php_1);
+        printf("php_0 = %p\n", (void*)php_0);
+        printf("php_1 = %p\n", (void*)php_1);
 
-       printf("*php_0 = %d\n", *php_0);
-       printf("*php_1 = %d\n", *php_1);
+        printf("*php_0 = %d\n", *php_0);
+        printf("*php_1 = %d\n", *php_1);
 
-       return 0;
-   }
-   ```
+        return 0;
+    }
+    ```
 
 ### Proceso de compilación
 
@@ -362,27 +362,27 @@ contrario).
     ```nasm
     example:
         movabsq $0x0011223344556677, %rax
-        movb $0xaa, %dl
-        movb %dl, %al
-        movsbq %dl, %rax
-        movzbq %dl, %rax
+        movb    $0xaa, %dl
+        movb    %dl, %al
+        movsbq  %dl, %rax
+        movzbq  %dl, %rax
     ```
 
 1. Dado el siguiente código asm escribir una función en C que se compile a lo
    mismo.
 
-   > Hint: utilizar GCC para corroborar el resultado.
-
-   ```nasm
-   decode1:
-       movq (%rdi), %r8
-       movq (%rsi), %rcx
-       movq (%rdx), %rax
-       movq %r8, (%rsi)
-       movq %rcx, (%rdx)
-       movq %rax, (%rdi)
-       ret
+    ```nasm
+    decode1:
+        movq (%rdi), %r8
+        movq (%rsi), %rcx
+        movq (%rdx), %rax
+        movq %r8, (%rsi)
+        movq %rcx, (%rdx)
+        movq %rax, (%rdi)
+        ret
     ```
+
+   > Hint: utilizar GCC para corroborar el resultado.
 
    El prototipo de la función debe ser:
    ```C
@@ -394,28 +394,28 @@ contrario).
 1. Indicar con que instrucción asm se pueden reemplazar los siguiente códigos
    en asm.
 
-   1.
-   ```nasm
-   subq $8, %rsp
-   movq %rbp, (%rsp)
-   ```
+    1.
+    ```nasm
+    subq $8, %rsp
+    movq %rbp, (%rsp)
+    ```
 
-   1.
-   ```nasm
-   movq (%rsp), %rax
-   addq $8, %rsp
-   ```
+    1.
+    ```nasm
+    movq (%rsp), %rax
+    addq $8, %rsp
+    ```
 
 1. Escribir un programa en assembler utilizando únicamente `leaq` que
    implementa la siguiente función en C:
 
-   ```C
-   long poly(long x, long y, long z)
-   {
-       long p = 2 * x + 6 * y + 6 * z;
-       return p;
-   }
-   ```
+    ```C
+    long poly(long x, long y, long z)
+    {
+        long p = 2 * x + 6 * y + 6 * z;
+        return p;
+    }
+    ```
 
 1. Dada la siguiente carga de valores en memoria y registros respectivamente
 
@@ -458,15 +458,15 @@ contrario).
 
 1. Dado el siguiente código en C, escribir el código ASM al que compila.
 
-   ```C
-   #include <inttypes.h>
+    ```C
+    #include <inttypes.h>
 
-   typedef unsigned __int128 uint128_t;
+    typedef unsigned __int128 uint128_t;
 
-   void producto_unsigned(uint128_t *dest, uint64_t x, uint64_t y) {
-       *dest = x * (uint128_t) y;
-   }
-   ```
+    void producto_unsigned(uint128_t *dest, uint64_t x, uint64_t y) {
+        *dest = x * (uint128_t) y;
+    }
+    ```
 
    Los parámetros son dados en `%rdi`, `%rsi` y `%rdx` respectivamente.
 
@@ -474,25 +474,25 @@ contrario).
    Indicar como cambia el código ASM si los parámetros de la función pasan a
    ser unsigned.
 
-   ```C
-   void div_signed(long x, long y, long *qp, long *rp)
-   {
-       long q = x / y;
-       long r = x % y;
-       *qp = q;
-       *rp = r;
-   }
-   ```
+    ```c
+    void div_signed(long x, long y, long *qp, long *rp)
+    {
+        long q = x / y;
+        long r = x % y;
+        *qp = q;
+        *rp = r;
+    }
+    ```
 
    Los parámetros son dados en `%rdi`, `%rsi`, `%rdx` y `%rcx` respectivamente.
 
 1. Para la siguiente función en C:
 
-   ```C
-   int comp(data_t a, data_t b){
-       return a COMP b;
-   }
-   ```
+    ```C
+    int comp(data_t a, data_t b){
+        return a COMP b;
+    }
+    ```
 
    Donde COMP se define mediante `#define`. Y suponiendo que `a` se guarda en
    `%rdi`, y `b` en `%rsi`. Completar la siguiente tabla:
@@ -506,11 +506,11 @@ contrario).
 
 1. Para la siguiente función en C:
 
-   ```C
-   int test(data_t a, data_t b){
-       return a TEST b;
-   }
-   ```
+    ```C
+    int test(data_t a, data_t b){
+        return a TEST b;
+    }
+    ```
 
    Donde TEST se define mediante `#define`. Y suponiendo que `a` se guarda en
    `%rdi`. Completar la siguiente tabla:
@@ -523,22 +523,29 @@ contrario).
    | `testl %edi, %edi`<br>`setle %al`| | |
 
 1. Indicar cual es el target de `je` indicado con `xxxxxx`.
-   1. Dado:
+    1. Dado:
+
         ```nasm
         40003FA: 74 02     je xxxxxx
         40003FC: FF D0     callq *%rax
         ```
-   1. Dado:
+
+    1. Dado:
+
         ```nasm
         400042F: 74 F4     je xxxxxx
         4000431: 5D        pop %rbp
         ```
-   1. Dado:
+
+    1. Dado:
+
         ```nasm
         xxxxxxx: 77 02     ja 400547
         xxxxxxx: 5D        pop %rax
         ```
-   1. Dado:
+
+    1. Dado:
+
         ```nasm
         40005E8: E9 73 FF FF FF    jmpq xxxxxx
         40005EF: 90                nop
@@ -546,24 +553,24 @@ contrario).
 
 1. Dado el siguiente código en C que compila al código asm que lo continúa.
 
-   ```C
-   void cond(short a, short *p)
-   {
-       if (a && *p > a)
-           *p = a;
-   }
-   ```
+    ```C
+    void cond(short a, short *p)
+    {
+        if (a && *p > a)
+            *p = a;
+    }
+    ```
 
-   ```nasm
-   cond:
-       testw    %di, %di
-       je .L1
-       cmpw     %di, (%rsi)
-       jle .L1
-       movw     %di, (%rsi)
-    .L1:
-       ret
-   ```
+    ```nasm
+    cond:
+        testw    %di, %di
+        je .L1
+        cmpw     %di, (%rsi)
+        jle .L1
+        movw     %di, (%rsi)
+     .L1:
+        ret
+    ```
    1. Por que en el código asm hay dos branches condicionales si en el código C
       solo hay uno?
    1. Escribir un código en C utilizando `goto` que tenga una mayor correlación
@@ -573,121 +580,121 @@ contrario).
    assembly que le sigue. Analizando el código assembly, completar el código C
    de forma tal que al compilar se obtenga el mismo código assembly.
 
-   ```C
-   short test(short x, short y, short z)
-   {
-       short val = ____________;
-       if (____________)
-       {
-           if (____________)
-           {
-               val = ____________;
-           } else {
-               val = ____________;
-           }
-       } else if (____________) {
-           val = ____________;
-       }
-       return val;
-   }
-   ```
+    ```C
+    short test(short x, short y, short z)
+    {
+        short val = ____________;
+        if (____________)
+        {
+            if (____________)
+            {
+                val = ____________;
+            } else {
+                val = ____________;
+            }
+        } else if (____________) {
+            val = ____________;
+        }
+        return val;
+    }
+    ```
 
-   ```nasm
-   test:
-       leaq (%rdx,%rsi), %rax
-       subq %rdi, %rax
-       cmpq $5, %rdx
-       jle .L2
-       cmpq $2, %rsi
-       jle .L3
-       movq %rdi, %rax
-       idivq %rdx, %rax
-       ret
-   .L3:
-       movq %rdi, %rax
-       idivq %rsi, %rax
-       ret
-   .L2:
-       cmpq $3, %rdx
-       jge .L4
-       movq %rdx, %rax
-       idivq %rsi, %rax
-   .L4:
-       rep; ret
-   ```
-
-1. A partir de la versión completa del siguiente código C, se obtuvo el código
-   assembly que le sigue. Analizando el código assembly, completar el código C
-   de forma tal que al compilar se obtenga el mismo código assembly.
-
-   ```C
-   short test(short x, short y, short z)
-   {
-       short val = ____________;
-       if (____________)
-       {
-           if (____________)
-           {
-               val = ____________;
-           } else {
-               val = ____________;
-           }
-       } else if (____________) {
-           val = ____________;
-       }
-       return val;
-   }
-   ```
-
-   ```nasm
-   test:
-       leaq 12(%rsi), %rdx
-       testq %rdi, %rdi
-       jge .L2
-       movq %rdi, %rbx
-       imulq %rsi, %rbx
-       movq %rdi, %rdx
-       orq %rsi, %rdx
-       cmpq %rsi, %rdi
-       cmovge %rdx, %rbx
-       ret
-   .L2:
-       idivq %rsi, %rdi
-       cmpq $10, %rsi
-       cmovge %rdi, %rbx
-       ret
-   ```
+    ```nasm
+    test:
+        leaq (%rdx,%rsi), %rax
+        subq %rdi, %rax
+        cmpq $5, %rdx
+        jle .L2
+        cmpq $2, %rsi
+        jle .L3
+        movq %rdi, %rax
+        idivq %rdx, %rax
+        ret
+    .L3:
+        movq %rdi, %rax
+        idivq %rsi, %rax
+        ret
+    .L2:
+        cmpq $3, %rdx
+        jge .L4
+        movq %rdx, %rax
+        idivq %rsi, %rax
+    .L4:
+        rep; ret
+    ```
 
 1. A partir de la versión completa del siguiente código C, se obtuvo el código
    assembly que le sigue. Analizando el código assembly, completar el código C
    de forma tal que al compilar se obtenga el mismo código assembly.
 
-   ```C
-   short loop_while(short a, short b)
-   {
-       short result = ____________;
-       while (____________)
-       {
-           result = ____________;
-           a = ____________;
-       }
-       return result;
-   }
-   ```
+    ```C
+    short test(short x, short y, short z)
+    {
+        short val = ____________;
+        if (____________)
+        {
+            if (____________)
+            {
+                val = ____________;
+            } else {
+                val = ____________;
+            }
+        } else if (____________) {
+            val = ____________;
+        }
+        return val;
+    }
+    ```
 
-   ```nasm
-   loop_while:
-       movl $0, %eax
-       jmp .L2
-   .L3:
-       leaq (,%rsi, %rdi), %rdx
-       addq %rdx, %rax
-       subq $1, %rdi
-   .L2:
-       cmpq %rsi, %rdi
-       jg .L3
-       ret
-   ```
+    ```nasm
+    test:
+        leaq 12(%rsi), %rdx
+        testq %rdi, %rdi
+        jge .L2
+        movq %rdi, %rbx
+        imulq %rsi, %rbx
+        movq %rdi, %rdx
+        orq %rsi, %rdx
+        cmpq %rsi, %rdi
+        cmovge %rdx, %rbx
+        ret
+    .L2:
+        idivq %rsi, %rdi
+        cmpq $10, %rsi
+        cmovge %rdi, %rbx
+        ret
+    ```
+
+1. A partir de la versión completa del siguiente código C, se obtuvo el código
+   assembly que le sigue. Analizando el código assembly, completar el código C
+   de forma tal que al compilar se obtenga el mismo código assembly.
+
+    ```C
+    short loop_while(short a, short b)
+    {
+        short result = ____________;
+        while (____________)
+        {
+            result = ____________;
+            a = ____________;
+        }
+        return result;
+    }
+    ```
+
+    ```nasm
+    loop_while:
+        movl $0, %eax
+        jmp .L2
+    .L3:
+        leaq (,%rsi, %rdi), %rdx
+        addq %rdx, %rax
+        subq $1, %rdi
+    .L2:
+        cmpq %rsi, %rdi
+        jg .L3
+        ret
+    ```
 
 1. Implementar las funciones `strchr()` y `strrchr()` en lenguaje ensamblador.
    Una de ellas en x86 (32 bits), la otra en x86-64 (64 bits).
@@ -699,6 +706,7 @@ contrario).
     char *strchr(const char *s, int c);
     char *strrchr(const char *s, int c);
     ```
+
     La función strchr() retorna un puntero a la primera ocurrencia del
         caracter c en la cadena s.
     La función strrchr() retorna un puntero a la última ocurrencia del
