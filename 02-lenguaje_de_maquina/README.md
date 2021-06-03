@@ -684,16 +684,16 @@ contrario).
 
     ```nasm
     loop_while:
-        movl $0, %eax
-        jmp .L2
-    .L3:
-        leaq (,%rsi, %rdi), %rdx
-        addq %rdx, %rax
-        subq $1, %rdi
+            movl    $0, %eax
     .L2:
-        cmpq %rsi, %rdi
-        jg .L3
-        ret
+            cmpw    %si, %di
+            jle     .L4
+            leal    (%rsi,%rdi), %edx
+            addl    %edx, %eax
+            subl    $1, %edi
+            jmp     .L2
+    .L4:
+            ret
     ```
 
 1. Implementar las funciones `strchr()` y `strrchr()` en lenguaje ensamblador.
