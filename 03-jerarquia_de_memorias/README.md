@@ -7,10 +7,10 @@ Los siguientes ejercicios tienen como objetivo afianzar conceptos clave en el en
 Los programas con buena localidad tienden a acceder al mismo set de datos una y otra vez o a acceder a sets cercanos de datos. De este modo, tienden a acceder a más datos de los niveles más altos de la jerarquía de memorias que programas con mala o pobre localidad y, por lo tanto, corren más rápido.
 
 
-1. Dada la siguiente función, indicar qué está computando y permutar los loops de modo que se itere sobre el array tridimensional array con el patrón de acceso *stride-1*.
+1. Dada la siguiente función, indicar qué está computando y permutar los loops de modo que se itere sobre el arreglo tridimensional *array* con el patrón de acceso *stride-1*.
 
 ```c
-int productarray3d(int array[N][N][N]) {
+int foo(int array[N][N][N]) {
     int i, j, k, product = 1;
     for (i = N-1; i >= 0; i--) {
         for (j = N-1; j >= 0; j--) {
