@@ -36,7 +36,7 @@ typedef struct {
 point p[N];
 ```
 
-Analizar las siguientes 3 funciones, indicar qué operación realizan, realizar un ranking ordenándolas según su localidad espacial y justificar las consideraciones que llevaron a elegir ese orden.
+Analizar las siguientes 3 funciones, indicar qué operación realizan, realizar un ranking ordenándolas según su localidad espacial y justificar con las consideraciones que llevaron a elegir ese orden.
 
 ```c
 void foo1(point *p, int n) {
@@ -149,3 +149,15 @@ for (i=0; i < 16; i++) {
     }
 }
 ```
+
+1. En una caché que usa los s bits de orden más alto de una dirección como set index, bloques contiguos de memoria son mapeados al mismo set. Considerando este tipo de caché responder:
+
+    1. ¿Cuántos bloques hay en cada uno de estos pedazos contiguos de array?
+    1. Dada una caché con: (S, E, B, m) = (512, 1, 32, 32) y considerando el siguiente código, responder cuál será la máxima cantidad de bloques del array que se almacenarán en la caché en algún momento de la ejecución?
+    
+    ```c
+    int array[4096];
+    for (i = 0; i < 4096; i++)
+        sum += array[i];
+    ```
+
