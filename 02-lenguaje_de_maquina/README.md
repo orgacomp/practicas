@@ -1022,7 +1022,7 @@ double foo2(double w, int x, float y, long z);
 9:     ret
 ```
 
-1. Dado el dump de assembly x86-64, reconstruir la función en código C foo3 con la firma:
+1. Dado el _dump_ de assembly x86-64, reconstruir la función en código C _foo3_ con la firma:
 
 ```c
 double foo3(int *ap, double b, long c, float *dp);
