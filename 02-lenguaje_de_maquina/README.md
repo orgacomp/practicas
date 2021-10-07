@@ -940,13 +940,14 @@ float foo(float valor_1, const float *origen, float *destino)
 > Hint: ip en %rdi, fp en %rsi, dp en %rdx, l en %rcx, el resultado es devuelto en %xmm0.
 
 ```c
-1: double foo(int *ip, float *fp, double *dp, long l) {
-2:     int i = *ip; float f = *fp; double d = *dp;
-3:     *ip = (int)     val1;
-4:     *fp = (float)   val2;
-5:     *dp = (double)  val3;
-6:     return (double) val4;
-7: }
+1: double foo(int *ip, float *fp, double *dp, long l)
+2: {
+3:     int i = *ip; float f = *fp; double d = *dp;
+4:     *ip = (int)     val1;
+5:     *fp = (float)   val2;
+6:     *dp = (double)  val3;
+7:     return (double) val4;
+8: }
 ```
 
 ```nasm
