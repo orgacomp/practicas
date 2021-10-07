@@ -936,7 +936,7 @@ float foo(float valor_1, const float *origen, float *destino)
 }
 ```
 
-1. Considerando la función en código C y el dump de assembly x86-64, identificar a cuál valor entre i, f, d y l mapean las expresiones val1, val2, val3 y val4.
+1. Considerando la función en código C y el _dump_ de assembly x86-64, identificar a cuál valor entre _i_, _f_, _d_ y _l_ mapean las expresiones _val1_, _val2_, _val3_ y _val4_.
 > Hint: ip en %rdi, fp en %rsi, dp en %rdx, l en %rcx, el resultado es devuelto en %xmm0.
 
 ```c
