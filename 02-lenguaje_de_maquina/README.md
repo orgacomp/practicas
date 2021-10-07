@@ -985,7 +985,7 @@ Para una ejecución en x86-64, suponer que _x_ está en %xmm0 o en alguna porci�
 1. Dado el _dump_ de assembly x86-64, reconstruir la función en código C _foo1_ con la firma:
 
     ```c
-    double foo1(double a, float x, double b, int i)
+    double foo1(double a, float x, double b, int i);
     ```
 
 > Hint 1: a en %xmm0, x en %xmm1, b en %xmm2, i en %edi.
