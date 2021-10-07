@@ -928,7 +928,8 @@ contrario).
 > Hint: los argumentos utilizan los registros %xmm0, %rdi, %rsi respectivamente en orden de aparición.
 
 ```c
-float foo(float valor_1, float *origen, float *dest) {
+float foo(float valor_1, const float *origen, float *destino)
+{
     float valor_2 = *origen;
     *dest = valor_1;
     return valor_2;
