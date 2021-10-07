@@ -772,7 +772,7 @@ contrario).
     ```
 
 1. El código assembly de la siguiente función posee bugs que llevan a un
-   incorrecto funcionamiento ¿cuáles son, por qué y cómo se subsanan?.
+   incorrecto funcionamiento ¿cuáles son, por qué y cómo se subsanan?
     ```c
      1: typedef struct element {
      2:     char id[4];
@@ -860,7 +860,8 @@ contrario).
 1. A partir de la versión completa del siguiente código C, se obtuvo el código
    assembly que le sigue. Analizando el código assembly, completar el código C
    de forma tal que al compilar se obtenga el mismo código assembly. ¿Cuánto
-   valen las constantes `FILAS` y `COLUMNAS`?.
+   valen las constantes `FILAS` y `COLUMNAS`?
+   
 
     ```c
      1: int mglobal[FILAS][COLUMNAS];
@@ -921,3 +922,130 @@ contrario).
     39:     cmovb   %rdx, %rax
     40:     ret
     ```
+
+1. Implementar en assembly la siguiente función en código C utilizando los registros apropiados para trabajar con tipos flotantes.
+
+> Hint: los argumentos utilizan los registros %xmm0, %rdi, %rsi respectivamente en orden de aparición.
+
+```c
+float foo(float valor_1, const float *origen, float *destino)
+{
+    float valor_2 = *origen;
+    *dest = valor_1;
+    return valor_2;
+}
+```
+
+1. Considerando la función en código C y el _dump_ de assembly x86-64, identificar a cuál valor entre _i_, _f_, _d_ y _l_ mapean las expresiones _val1_, _val2_, _val3_ y _val4_.
+> Hint: ip en %rdi, fp en %rsi, dp en %rdx, l en %rcx, el resultado es devuelto en %xmm0.
+
+```c
+1: double foo(int *ip, float *fp, double *dp, long l)
+2: {
+3:     int i = *ip; float f = *fp; double d = *dp;
+4:     *ip = (int)     val1;
+5:     *fp = (float)   val2;
+6:     *dp = (double)  val3;
+7:     return (double) val4;
+8: }
+```
+
+```nasm
+1: foo:
+2:     movl         (%rdi),
+3:     vmovss       (%rsi), vcvttsd2si
+4:     movl         %r8d, (%rdi)
+5:     vcvtsi2ss    %eax, %xmm1, %xmm1
+6:     vmovss       %xmm1, (%rsi)
+7:     vcvtsi2sdq   %rcx, %xmm1, %xmm1
+8:     vmovsd       %xmm1, (%rdx)
+9:     vunpcklps    %xmm0, %xmm0, %xmm0
+10:    vcvtps2pd    %xmm0, %xmm0
+11:    ret
+```
+  
+  1. La función en código C a continuación convierte un argumento del tipo *src_t* a un valor de retorno de tipo *dst_t*, ambos tipos definidos usando *typedef*.
+Para una ejecución en x86-64, suponer que _x_ está en %xmm0 o en alguna porción adecuada de %rdi. Se deben utilizar no más de 2 instrucciones (puede haber casos donde 1 instrucción sea suficiente) para la conversión del tipo y la copia del valor a la porción adecuada de %rax (resultado entero) o %xmm0 (resultado de punto flotante). Con estas consideraciones, completar las instrucciones en la tabla.
+
+```c
+1: dest_t foo(src_t x) {
+2:     dest_t y = (dest_t) x;
+3:     return y;
+4: }
+```
+
+| Tipo de x | Tipo de y | Instrucciones |
+| --------- | --------- | ------------- |
+|  `long`   |  `double` |               |
+|  `double` |  `int`    |               |
+|  `double` |  `float`  |               |
+|  `long`   |  `float`  |               |
+|  `float`  |  `long`   |               |
+
+1. Dado el _dump_ de assembly x86-64, reconstruir la función en código C _foo1_ con la firma:
+
+    ```c
+    double foo1(double a, float x, double b, int i);
+    ```
+
+> Hint 1: a en %xmm0, x en %xmm1, b en %xmm2, i en %edi.
+> Hint 2: considerar que las instrucciones de las líneas 2 y 3 conforman la conversión de x a double.
+
+```nasm
+1: foo1:
+2:     vunpcklps %xmm1, %xmm1, %xmm1
+3:     vcvtps2pd %xmm1, %xmm1
+4:     vmulsd %xmm0, %xmm1, %xmm0
+5:     vcvtsi2sd %edi, %xmm1, %xmm1
+6:     vdivsd %xmm1, %xmm2, %xmm20
+7:     vsubsd %xmm2, %xmm0, %xmm0
+8:     ret
+```
+
+1. Dado el _dump_ de assembly x86-64, reconstruir la función en código C _foo2_ con la firma:
+
+```c
+double foo2(double w, int x, float y, long z);
+```
+
+> Hint: w en %xmm0, x en %edi, y en %xmm1, z en %rsi.
+
+```nasm
+1: foo2:
+2:     vcvtsi2ss       %edi, %xmm2, %xmm2
+3:     vmulss          %xmm1, %xmm2, %xmm1
+4:     vunpcklps       %xmm1, %xmm1, %xmm1
+5:     vcvtps2pd       %xmm1, %xmm2
+6:     vcvtsi2sdq      %rsi, %xmm1, %xmm1
+7:     vdivsd          %xmm1, %xmm0, %xmm0
+8:     vsubsd          %xmm0, %xmm2, %xmm0
+9:     ret
+```
+
+1. Dado el _dump_ de assembly x86-64, reconstruir la función en código C _foo3_ con la firma:
+
+```c
+double foo3(int *ap, double b, long c, float *dp);
+```
+    
+> Hint: ap en %rdi, b en %xmm0, c en %rsi, dp en %rdx.
+
+```nasm
+1: foo3:
+2:     vmovss       (%rdx), %xmm1
+3:     vcvtsi2sd    (%rdi), %xmm2, %xmm2
+4:     vucomisd     %xmm2, %xmm0
+5:     jbe          .L8
+6:     vcvtsi2ssq   %rsi, %xmm0, %xmm0
+7:     vmulss       %xmm1, %xmm0, %xmm1
+8:     vunpcklps    %xmm1, %xmm1, %xmm1
+9:     vcvtps2pd    %xmm1, %xmm0
+10:    ret
+11: .L8:
+12:    vaddss       %xmm1, %xmm1, %xmm1
+13:    vcvtsi2ssq   %rsi, %xmm0, %xmm0
+14:    vaddss       %xmm1, %xmm0, %xmm0
+15:    vunpcklps    %xmm0, %xmm0, %xmm0
+16:    vcvtps2pd    %xmm0, %xmm0
+17:    ret
+```
