@@ -982,7 +982,7 @@ Para una ejecución en x86-64, asumir que x está en %xmm0 o en alguna porción 
 |  `long`   |  `float`  |               |
 |  `float`  |  `long`   |               |
 
-1. Dado el dump de assembly x86-64, reconstruir la función en código C foo1 con la firma:
+1. Dado el _dump_ de assembly x86-64, reconstruir la función en código C _foo1_ con la firma:
 
     ```c
     double foo1(double a, float x, double b, int i)
