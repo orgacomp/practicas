@@ -1002,7 +1002,7 @@ Para una ejecución en x86-64, asumir que x está en %xmm0 o en alguna porción 
 8:     ret
 ```
 
-1. Dado el dump de assembly x86-64, reconstruir la función en código C foo2 con la firma:
+1. Dado el _dump_ de assembly x86-64, reconstruir la función en código C _foo2_ con la firma:
 
 ```c
 double foo2(double w, int x, float y, long z);
