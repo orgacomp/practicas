@@ -965,7 +965,7 @@ float foo(float valor_1, const float *origen, float *destino)
 ```
   
   1. La función en código C a continuación convierte un argumento del tipo *src_t* a un valor de retorno de tipo *dst_t*, ambos tipos definidos usando *typedef*.
-Para una ejecución en x86-64, asumir que x está en %xmm0 o en alguna porción adecuada de %rdi. Se deben utilizar no más de 2 instrucciones (puede haber casos donde 1 instrucción sea suficiente) para la conversión del tipo y la copia del valor a la porción adecuada de %rax (resultado entero) o %xmm0 (resultado de punto flotante). Con estas consideraciones, completar las instrucciones en la tabla.
+Para una ejecución en x86-64, suponer que _x_ está en %xmm0 o en alguna porción adecuada de %rdi. Se deben utilizar no más de 2 instrucciones (puede haber casos donde 1 instrucción sea suficiente) para la conversión del tipo y la copia del valor a la porción adecuada de %rax (resultado entero) o %xmm0 (resultado de punto flotante). Con estas consideraciones, completar las instrucciones en la tabla.
 
 ```c
 1: dest_t foo(src_t x) {
